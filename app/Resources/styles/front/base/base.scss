@@ -1,0 +1,15 @@
+a {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+.wrapper-top {
+  margin-top: 80px;
+}
+
+.wrapper-middle {
+  padding: 60px 0;
+}

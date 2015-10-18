@@ -1,0 +1,14 @@
+// Bootstrap 3
+@import 'config/variables';
+@import '../../../../web/vendor/bootstrap-sass-official/assets/stylesheets/bootstrap';
+@import '../../../../web/vendor/fontawesome/scss/font-awesome';
+@import 'functions';
+
+// Site variables
+@import 'base/typo';
+
+// Base styling
+@import 'base/base';
+@import 'base/icons';
+
+// Components

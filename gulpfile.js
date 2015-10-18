@@ -12,6 +12,7 @@ var concat = require('gulp-concat'),
     del = require('del'),
     livereload = require('gulp-livereload'),
     notify = require("gulp-notify"),
+    sass = require('gulp-sass'),
     clasticNamespace = require('./vendor/clastic/core-bundle/Resources/scripts/Clastic.js');
 
 clasticNamespace();
@@ -21,9 +22,10 @@ var paths = {
         'app': [
             'web/vendor/multiselect/css/multi-select.css',
             'vendor/clastic/*/Resources/public/styles/**.less',
-            'vendor/clastic/*/Resources/public/styles/*/*.less'
+            'vendor/clastic/*/Resources/public/styles/*/*.less',
+            'app/Resources/styles/backend/**.less'
         ],
-        'main': 'vendor/clastic/*/Resources/public/styles/style.less'
+        'main': [ 'vendor/clastic/*/Resources/public/styles/style.less', 'app/Resources/styles/backend/styles.less' ]
     },
     'scripts': {
         'vendor': [
@@ -35,7 +37,18 @@ var paths = {
         ]
     },
     'templates': 'src/**/*.twig',
-    'build': 'web/build/'
+    'build': 'web/build/',
+    'sass': {
+        'app': [
+            'app/Resources/styles/front/*.scss',
+            'app/Resources/styles/front/*/*.scss',
+            'app/Resources/styles/front/*/*/*.scss',
+            'app/Resources/styles/front/*/*/*/*.scss'
+        ],
+        'main' : [
+            'app/Resources/styles/front/**.scss'
+        ]
+    }
 };
 
 var clastic = new Clastic.Clastic();
@@ -58,11 +71,14 @@ gulp.task('clean', function (cb) {
 gulp.task('build', ['scripts', 'styles']);
 
 gulp.task('watch', function() {
+    livereload.listen()
     gulp.watch(paths.scripts.vendor, ['scripts:vendor']);
     gulp.watch(paths.scripts.app, ['scripts:app']);
 
     gulp.watch(paths.styles.vendor, ['styles:vendor']);
     gulp.watch(paths.styles.app, ['styles:app']);
+
+    gulp.watch(paths.sass.app, ['styles:sass']);
 
     livereload.listen();
     gulp.watch([paths.build + '**', paths.templates])
@@ -93,7 +109,7 @@ gulp.task('scripts:app', function() {
 });
 
 // CSS concat, auto-prefix and minify
-gulp.task('styles', ['styles:app']);
+gulp.task('styles', ['styles:app','styles:sass']);
 
 gulp.task('styles:app', function() {
     gulp.src(paths.styles.main)
@@ -108,3 +124,19 @@ gulp.task('styles:app', function() {
         .pipe(gulp.dest(paths.build))
         .pipe(filesize());
 });
+
+gulp.task('styles:sass', function () {
+    gulp.src(paths.sass.main)
+        .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefix('last 1 versions'))
+        .pipe(minifyCSS({
+            keepSpecialComments: 0
+        }))
+        .pipe(rename('jarys.css'))
+        .pipe(gulp.dest(paths.build))
+        .pipe(filesize())
+        .pipe(livereload());
+        livereload.reload()
+});
+
+
