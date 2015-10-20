@@ -2,7 +2,6 @@
 /web/vendor/
 /web/build/
 /web/uploads/*
-/web/assets/*
 !/web/uploads/.gitkeep
 /app/bootstrap.php.cache
 /app/cache/*
@@ -17,3 +16,6 @@
 /bin/
 /composer.phar
 /.idea/
+/web/assets/*
+!/web/assets/fonts/
+!/web/assets/images/

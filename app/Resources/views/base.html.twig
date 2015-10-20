@@ -7,7 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>{% block title %}Jary's DP!{% endblock %}</title>
+
         {% block stylesheets %}
+            <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
             <link rel="stylesheet" href="{{ asset('build/jarys.css') }}">
         {% endblock %}
 
@@ -15,86 +17,16 @@
     </head>
     <body>
     {% block body %}
-        <div class="app-navbar">
-            <div class="container">
-                <nav class="navbar">
-                    <a class="navbar-brand" href="{{ path('homepage') }}">Jarys</a>
-                    <ul class="nav navbar-nav pull-left">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Producten
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Digital Printing</a>
-                                <a class="dropdown-item" href="#">Offset</a>
-                                <a class="dropdown-item" href="#">Packaging</a>
-                                <a class="dropdown-item" href="#">XXL</a>
-                                <a class="dropdown-item" href="#">Web 2 Print</a>
-                                <a class="dropdown-item" href="#">Creative</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Contact
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                User
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Account</a>
-                                <a class="dropdown-item" href="#">My company</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Logout</a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        {% include 'header.html.twig' %}
+        {% include 'navbar.html.twig' %}
+        {% include 'banner.html.twig' %}
 
-        <div class="container">
-            {% for flashMessage in app.session.flashbag.get('success') %}
-                <div class="alert alert-success alert-dismissible fade in" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <strong>Success!</strong> {{ flashMessage }}
-                </div>
-            {% endfor %}
-
+        <div class="content">
             {% block content %}{% endblock %}
         </div>
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2">
-                        <ul class="list-unstyled">
-                            <li><h6>Product</h6></li>
-                            <li><a href="#">About</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2">
-                        <ul class="list-unstyled">
-                            <li><h6>Support</h6></li>
-                            <li><a href="#">Online support</a></li>
-                            <li><a href="#">Helpdesk</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2">
-                    </div>
-                    <div class="col-md-6">
-                        <ul class="list-unstyled">
-                            <li><h6>About</h6></li>
-                            <li><p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam leo nisl, lobortis id ultrices eu, luctus ac arcu. Fusce ullamcorper mauris tortor, nec scelerisque ex consectetur id.</p></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        {% include 'footer.html.twig' %}
+
     {% endblock %}
     {% block javascripts %}
         <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>

@@ -1,0 +1,132 @@
+
+.content-mid {
+  background-color: #f8f8f8;
+  padding-bottom: 0;
+}
+
+.product-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.home-page-product-wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 15px 30px;
+  width: 50%;
+}
+
+.home-page-product {
+  margin-bottom: 40px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+  width: 100%;
+  position: relative;
+  height: 228px;
+  .left-col {
+    position: absolute;
+    width: 114px;
+    height: 228px;
+    font-size: 32px;
+    line-height: 114px;
+    i {
+      text-align: center;
+      width: 114px;
+      height: 114px;
+      font-size: 32px;
+      line-height: 114px;
+      color: #ffffff;
+      transition: .5s ease-in-out;
+      cursor: pointer;
+    }
+  }
+  .right-col {
+    padding: 9% 20px 20px 150px;
+    text-align: left;
+  }
+  h4 {
+    font-kerning: auto;
+    font-size: 40px;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-variant-ligatures: normal;
+    font-weight: 200;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+  }
+  a {
+    display: block;
+    background-color: $body-bg;
+  }
+  span {
+    font-size: 17px;
+    line-height: 21px;
+    color: #b3b9c6;
+    display: block;
+  }
+}
+
+.dp {
+  h4 {
+    color: $jarys-blue;
+  }
+  .color {
+    background-color: $jarys-blue;
+  }
+}
+
+.xxl {
+  h4 {
+    color: $jarys-pink;
+  }
+  .color {
+    background-color: $jarys-pink;
+  }
+}
+
+.offset {
+  h4 {
+    color: $jarys-green;
+  }
+  .color {
+    background-color: $jarys-green;
+  }
+}
+
+.w2p {
+  h4 {
+    color: $jarys-orange;
+  }
+  .color {
+    background-color: $jarys-orange;
+  }
+}
+
+.pa {
+  h4 {
+    color: $jarys-yellow;
+  }
+  .color {
+    background-color: $jarys-yellow;
+  }
+}
+
+.cr {
+  h4 {
+    color: $jarys-red;
+  }
+  .color {
+    background-color: $jarys-red;
+  }
+}

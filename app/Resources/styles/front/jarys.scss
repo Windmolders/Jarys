@@ -1,6 +1,6 @@
 // Bootstrap 3
 @import 'config/variables';
-@import '../../../../web/vendor/bootstrap-sass-official/assets/stylesheets/bootstrap';
+@import 'bootstrap3/bootstrap';
 @import '../../../../web/vendor/fontawesome/scss/font-awesome';
 @import 'functions';
 
@@ -12,3 +12,10 @@
 @import 'base/icons';
 
 // Components
+@import 'components/navbar';
+@import 'components/social';
+@import 'components/header-top';
+@import 'components/banner';
+@import 'components/footer';
+@import 'components/product';
+@import 'components/intro';

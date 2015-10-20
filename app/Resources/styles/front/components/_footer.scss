@@ -1,0 +1,23 @@
+
+
+.footer {
+  background-color: $footer-bg;
+  padding: 40px 0;
+  font-family: $font-family-sans-serif;
+  li {
+    color: lighten(#595d65, 10%);
+    padding: 2px 0;
+  }
+  a {
+    color: lighten(#595d65, 10%);
+    text-transform: uppercase;
+    &:hover, &:focus {
+      color: lighten(#595d65, 20%);
+    }
+  }
+  h6 {
+    font-size: 18px;
+    color: $jarys-blue;
+    text-transform: uppercase;
+  }
+}

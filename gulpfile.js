@@ -71,7 +71,7 @@ gulp.task('clean', function (cb) {
 gulp.task('build', ['scripts', 'styles']);
 
 gulp.task('watch', function() {
-    livereload.listen()
+
     gulp.watch(paths.scripts.vendor, ['scripts:vendor']);
     gulp.watch(paths.scripts.app, ['scripts:app']);
 
@@ -136,7 +136,6 @@ gulp.task('styles:sass', function () {
         .pipe(gulp.dest(paths.build))
         .pipe(filesize())
         .pipe(livereload());
-        livereload.reload()
 });
 
 
