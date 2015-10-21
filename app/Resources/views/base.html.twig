@@ -15,7 +15,7 @@
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
+    <body class="{% block pageTypeClass %}page-homepage{% endblock %}">
     {% block body %}
         {% include 'header.html.twig' %}
         {% include 'navbar.html.twig' %}

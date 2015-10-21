@@ -48,6 +48,10 @@
       color: #ffffff;
       transition: .5s ease-in-out;
       cursor: pointer;
+      transition: background-color 1s ease;
+    }
+    i:hover, i:focus {
+      transition: background-color 1s ease;
     }
   }
   .right-col {
@@ -81,7 +85,7 @@
   h4 {
     color: $jarys-blue;
   }
-  .color {
+  .color, i:hover {
     background-color: $jarys-blue;
   }
 }
@@ -90,7 +94,7 @@
   h4 {
     color: $jarys-pink;
   }
-  .color {
+  .color , i:hover{
     background-color: $jarys-pink;
   }
 }
@@ -99,7 +103,7 @@
   h4 {
     color: $jarys-green;
   }
-  .color {
+  .color, i:hover {
     background-color: $jarys-green;
   }
 }
@@ -108,7 +112,7 @@
   h4 {
     color: $jarys-orange;
   }
-  .color {
+  .color, i:hover {
     background-color: $jarys-orange;
   }
 }
@@ -117,7 +121,7 @@
   h4 {
     color: $jarys-yellow;
   }
-  .color {
+  .color, i:hover {
     background-color: $jarys-yellow;
   }
 }
@@ -126,7 +130,7 @@
   h4 {
     color: $jarys-red;
   }
-  .color {
+  .color, i:hover {
     background-color: $jarys-red;
   }
 }

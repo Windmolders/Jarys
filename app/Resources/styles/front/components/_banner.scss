@@ -16,6 +16,19 @@
   }
 }
 
+.page-title {
+  line-height: 94px;
+  font-size: 36px;
+  color: $text-color;
+  background-color: $body-bg;
+  padding: 0 15px;
+  font-family: $font-family-sans-serif;
+  font-weight: 300;
+  &.dp {
+    color: $jarys-blue;
+  }
+}
+
 .page-info {
   width: 100%;
   height: 100% !important;
@@ -51,6 +64,10 @@
     background: $jarys-green;
     transition: .5s ease-in-out;
     cursor: pointer;
+    &.dp {
+      background: $jarys-blue;
+      color: $text-color;
+    }
   }
   p {
     color: #ffffff;
@@ -61,14 +78,6 @@
     padding-right: 53%;
     padding-bottom: 12%;
     margin-bottom: 20px;
-  }
-  i:hover {
-    background: $jarys-yellow;
-    -webkit-transition: .5s ease-in-out;
-    -moz-transition: .5s ease-in-out;
-    -ms-transition: .5s ease-in-out;
-    -o-transition: .5s ease-in-out;
-    transition: .5s ease-in-out;
   }
   .wrp {
     position: absolute;

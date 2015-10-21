@@ -12,6 +12,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:Default:index.html.twig');
+        return $this->render('AppBundle:Default:index.html.twig', array(
+            'title' => 'We colour your ideas',
+            'icon' => 'fa-home',
+            'product' => '',
+        ));
     }
 }
