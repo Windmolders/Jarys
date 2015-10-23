@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="AppBundle\Entity\ProductRepository" name="AppBundle\Entity\Product">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="icon" type="string" column="icon" length="255" nullable="true"/>
+    <field name="shortDescription" type="string" column="shortDescription" length="255" nullable="true"/>
+    <field name="intro1" type="text" column="intro1" nullable="true"/>
+    <field name="intro2" type="text" column="intro2" nullable="true"/>
+    <field name="title1" type="string" column="title1" length="255" nullable="true"/>
+    <field name="title2" type="string" column="title2" length="255" nullable="true"/>
+    <field name="image" type="string" column="string" length="500" nullable="true"/>
+    <field name="color" type="string" column="color" length="255" nullable="true"/>
+    <field name="class" type="string" column="class" length="255" nullable="true"/>
+
+    <many-to-one field="node" target-entity="Clastic\NodeBundle\Entity\Node">
+      <cascade><cascade-all/></cascade>
+      <join-column name="node_id" referenced-column-name="id" />
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
