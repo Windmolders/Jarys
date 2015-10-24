@@ -25,13 +25,58 @@
     background: $jarys-green;
     transition: .5s ease-in-out;
   }
-  &.dp {
+  &.blauw {
     i {
       background: $jarys-blue;
       color: $text-color;
     }
     .sub-title {
       color: $jarys-blue;
+    }
+  }
+  &.oranje {
+    i {
+      background: $jarys-orange;
+      color: $text-color;
+    }
+    .sub-title {
+      color: $jarys-orange;
+    }
+  }
+  &.groen {
+    i {
+      background: $jarys-green;
+      color: $text-color;
+    }
+    .sub-title {
+      color: $jarys-green;
+    }
+  }
+  &.geel {
+    i {
+      background: $jarys-yellow;
+      color: $text-color;
+    }
+    .sub-title {
+      color: $jarys-yellow;
+    }
+  }
+  &.roos {
+    i {
+      background: $jarys-pink;
+      color: $text-color;
+    }
+    .sub-title {
+      color: $jarys-pink;
+    }
+  }
+  &.rood {
+    i {
+      background: $jarys-red;
+      color: $text-color;
+    }
+    .sub-title {
+      color: $jarys-red;
     }
   }
   .sub-title {
@@ -48,6 +93,36 @@
 
 .sub-menu {
   margin: 20px 0 0 0;
+  &.groen {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-green;
+    }
+  }
+  &.blauw {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-blue;
+    }
+  }
+  &.geel {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-yellow;
+    }
+  }
+  &.rood {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-red;
+    }
+  }
+  &.oranje {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-orange;
+    }
+  }
+  &.roos {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-pink;
+    }
+  }
   li {
     + li {
       margin-top: 20px;

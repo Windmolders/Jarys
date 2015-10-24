@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+
+{% block pageTypeClass %}page-contact{% endblock %}
+
+{% block content %}
+    <div class="content-top">
+        <div class="container">
+            <div class="intro-block {{ record.class }}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Jarys DP</h3>
+                        <ul>
+                            <li>
+                                Guido Gezellestraat 5
+                            </li>
+                            <li>
+                                2630 Aartselaar
+                            </li>
+                            <li>
+                                <i class="fa fa-phone"></i> +32 (0)3 870 63 93
+                            </li>
+                            <li>
+                                <a href="mailto:printing@jarys.be"><i class="fa fa-envelope-o"></i> printing@jarys.be</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script>
+        function initialize() {
+            var mapProp = {
+                center:new google.maps.LatLng(51.134526,4.386233),
+                zoom: 16,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+            var marker = new google.maps.Marker({
+                position: {lat : 51.134526, lng:4.386233},
+                map: map,
+                title: 'Jarys DP'
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <div class="content-mid no-padding">
+        <div id="googleMap" class="map"></div>
+    </div>
+
+
+{% endblock %}

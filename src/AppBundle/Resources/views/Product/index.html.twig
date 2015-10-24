@@ -5,39 +5,23 @@
 {% block content %}
     <div class="content-top">
         <div class="container">
-            <div class="intro-block">
+            <div class="intro-block {{ record.class }}">
                 <div class="row">
                     <div class="col-md-6">
-                        <h3 class="title">
-                            Digitaal drukwerk
+                        <h3>
+                            {{ record.title1 }}
                         </h3>
                         <p>
-                            Digitaal drukken betekent dat wij rechtstreeks van PC/
-                            MAC bestanden printen op digitale productie persen
-                            en dit zonder gebruik te maken van film of drukplaten.
-                            De grote toegevoegde waarde van digitaal drukken
-                            bestaat er in dat er gepersonaliseerde elementen
-                            opgenomen kunnen worden op elk drukvel. Ook
-                            kleine oplagen en print on demand (POD) zijn
-                            uitermate geschikt om digitaal gedrukt te worden.
+                            {{ record.intro1|raw }}
                         </p>
                     </div>
 
                     <div class="col-md-6">
-                        <h3 class="title">
-                            Waarom digitaal drukwerk?
+                        <h3>
+                            {{ record.title2 }}
                         </h3>
                         <p>
-                            De vraag naar betaalbaar en kwalitatief
-                            hoogwaardig drukwerk in kleinere oplages, al dan
-                            niet gepersonaliseerd, blijft sterk stijgen. Steeds
-                            meer bedrijven maken hier gebruik van en zien de
-                            vele mogelijkheden. Digitaal drukken is daarom
-                            ook uitermate geschikt voor kleinere oplagen, adhoc
-                            producties, drukwerk dat actueel moet zijn of
-                            mutatiegevoelig is.
-                            Met ons performant machinepark en onze oplossingen
-                            komen wij te gemoed aan deze verzuchtingen.
+                            {{ record.intro2|raw }}
                         </p>
                     </div>
                 </div>
@@ -47,76 +31,22 @@
 
     <div class="content-menu">
         <div class="container">
-            <div class="sub-menu-title {{ product }}">
+            <div class="sub-menu-title {{ record.class }}">
                 <i class="fa fa-list"></i>
                 <span class="sub-title">Informatie</span>
             </div>
         </div>
         <div class="container">
             <div class="row">
-            <div class="col-md-6">
-                <ul class="list-unstyled sub-menu">
-                    <li>
-                        <a href="#">
+                <ul class="list-unstyled sub-menu {{ record.class }}">
+                    {% for info in record.getProductInfo() %}
+                    <li class="col-md-6">
+                        <a href="#{{ info.node.alias.alias }}" class="js-show-page">
                             Folders en brochures
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            Prijslijsten
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Nieuwsbrieven
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Visitekaartjes
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Les- en cursusmateriaal
-                        </a>
-                    </li>
+                    {% endfor %}
                 </ul>
-            </div>
-            <div class="col-md-6">
-                <ul class="list-unstyled sub-menu">
-                    <li>
-                        <a href="#">
-                            Uitnodigingen
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Verhuisberichten
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Catalogussen
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Geboortekaartjes
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Gepersonaliseerde Mailings
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Jaarverslagen
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </div>
         </div>
     </div>

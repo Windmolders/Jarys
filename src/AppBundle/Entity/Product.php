@@ -61,6 +61,28 @@ class Product implements NodeReferenceInterface
      */
     private $class;
 
+    /**
+     * @var string
+     */
+    private $displayTitle ;
+
+    /**
+     * @return string
+     */
+    public function getDisplayTitle()
+    {
+        return $this->displayTitle ;
+    }
+
+    /**
+     * @param string $displayTitle
+     */
+    public function setDisplayTitle($displayTitle)
+    {
+        $this->displayTitle  = $displayTitle;
+    }
+
+
 
     /**
      * Get id
@@ -285,7 +307,17 @@ class Product implements NodeReferenceInterface
      */
     public function getClass()
     {
-        return $this->class;
+        return strtolower($this->class);
+    }
+
+    /**
+     * Get ProductInfo
+     *
+     * @return string
+     */
+    public function getProductInfo() {
+
+        return 'tekst';
     }
 }
 

@@ -42,6 +42,6 @@ class ProductModule implements NodeModuleInterface
      */
     public function getDetailTemplate()
     {
-        return 'AppBundle:Product:detail.html.twig';
+        return 'AppBundle:Product:index.html.twig';
     }
 }

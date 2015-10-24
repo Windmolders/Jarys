@@ -1,7 +1,37 @@
 .intro-block {
   color: $text-grey;
-  .title {
+  h1,h2,h3,h4,h5,h6 {
     color: $jarys-blue;
     margin: 0 0 20px 0;
+  }
+  &.groen {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-green;
+    }
+  }
+  &.blauw {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-blue;
+    }
+  }
+  &.geel {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-yellow;
+    }
+  }
+  &.rood {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-red;
+    }
+  }
+  &.oranje {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-orange;
+    }
+  }
+  &.roos {
+    h1,h2,h3,h4,h5,h6 {
+      color: $jarys-pink;
+    }
   }
 }

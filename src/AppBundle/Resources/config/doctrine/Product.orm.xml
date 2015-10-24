@@ -4,6 +4,7 @@
     <id name="id" type="integer" column="id">
       <generator strategy="AUTO"/>
     </id>
+    <field name="displayTitle" type="string" column="displayTitle" length="255" nullable="true"/>
     <field name="icon" type="string" column="icon" length="255" nullable="true"/>
     <field name="shortDescription" type="string" column="shortDescription" length="255" nullable="true"/>
     <field name="intro1" type="text" column="intro1" nullable="true"/>

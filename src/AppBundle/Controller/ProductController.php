@@ -4,18 +4,15 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Clastic\BlockBundle;
 
 class ProductController extends Controller
 {
     /**
-     * @Route("/digital-printing", name="DigitalPrinting")
+     * @Route("/2", name="2")
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:Product:index.html.twig', array(
-            'title' => 'Digital Printing',
-            'icon' => 'fa-print',
-            'product' => 'dp'
-        ));
+
     }
 }

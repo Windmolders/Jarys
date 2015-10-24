@@ -3,6 +3,9 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
 
+parameters:
+    router.class: Clastic\AliasBundle\Routing\Router
+
 framework:
     #esi:             ~
     translator:      { fallback: "%locale%" }

@@ -2,11 +2,11 @@
     <div class="container">
         <div class="page-info">
             <h2>Jary's Digital Priting</h2>
-            <h3>{{ title }}</h3>
+            <h3>{{ record.displayTitle }}</h3>
             <p>Vraag vrijblijvend een offerte aan</p>
             <div class="wrp">
-                <i class="fa {{ icon }} {{ product }}"></i>
-                <span class="page-title {{ product }}">{{ title }}</span>
+                <i class="fa {{ record.icon }} {{ record.class }}"></i>
+                <span class="page-title {{ record.class }}">{{ record.displayTitle }}</span>
             </div>
         </div>
     </div>

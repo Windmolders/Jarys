@@ -24,8 +24,23 @@
   padding: 0 15px;
   font-family: $font-family-sans-serif;
   font-weight: 300;
-  &.dp {
+  &.groen {
+    color: $jarys-green;
+  }
+  &.blauw {
     color: $jarys-blue;
+  }
+  &.geel {
+    color: $jarys-yellow;
+  }
+  &.rood {
+    color: $jarys-red;
+  }
+  &.oranje {
+    color: $jarys-orange;
+  }
+  &.roos {
+    color: $jarys-pink;
   }
 }
 
@@ -51,6 +66,24 @@
     margin-left: -9px;
     z-index: 3;
     text-transform: uppercase;
+    &.groen {
+      color: $jarys-green;
+    }
+    &.blauw {
+      color: $jarys-blue;
+    }
+    &.geel {
+      color: $jarys-yellow;
+    }
+    &.rood {
+      color: $jarys-red;
+    }
+    &.oranje {
+      color: $jarys-orange;
+    }
+    &.roos {
+      color: $jarys-pink;
+    }
   }
   i {
     z-index: 99;
@@ -60,13 +93,27 @@
     line-height: 94px;
     font-size: 36px;
     float: left;
-    color: #ffffff;
+    color: $text-color;
     background: $jarys-green;
     transition: .5s ease-in-out;
     cursor: pointer;
-    &.dp {
+    &.groen {
+      background: $jarys-green;
+    }
+    &.blauw {
       background: $jarys-blue;
-      color: $text-color;
+    }
+    &.geel {
+      background: $jarys-yellow;
+    }
+    &.rood {
+      background: $jarys-red;
+    }
+    &.oranje {
+      background: $jarys-orange;
+    }
+    &.roos {
+      background: $jarys-pink;
     }
   }
   p {

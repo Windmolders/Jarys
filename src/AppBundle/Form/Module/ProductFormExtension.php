@@ -13,6 +13,7 @@ class ProductFormExtension extends AbstractNodeTypeExtension
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $this->findTab($builder, 'general')
+            ->add('displayTitle', 'text', ['label' => 'Titel die getoond wordt'])
             ->add('icon','text', ['label' => 'Icoon'])
             ->add('shortDescription','wysiwyg',['label' => 'Korte beschrijving', 'required' => false])
             ->add('title1','text', ['label' => 'Titel blok links', 'required' => false])

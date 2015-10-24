@@ -15,17 +15,17 @@
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body class="{% block pageTypeClass %}page-homepage{% endblock %}">
+    <body class="{% block pageTypeClass %}{% endblock %}">
     {% block body %}
-        {% include 'header.html.twig' %}
-        {% include 'navbar.html.twig' %}
-        {% include 'banner.html.twig' %}
+        {% include 'header.html.twig' with {'record' : record} %}
+        {% include 'navbar.html.twig' with {'record' : record} %}
+        {% include 'banner.html.twig' with {'record' : record} %}
 
         <div class="content">
             {% block content %}{% endblock %}
         </div>
 
-        {% include 'footer.html.twig' %}
+        {% include 'footer.html.twig' with {'record' : record} %}
 
     {% endblock %}
     {% block javascripts %}
