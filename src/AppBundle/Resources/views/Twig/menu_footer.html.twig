@@ -1,0 +1,8 @@
+{% for item in tree %}
+    <li><h6>{{ item.title }}</h6></li>
+    {% if item.__children %}
+            {% for child in item.__children %}
+                <li><a class="dropdown-item" href="{{ child._link }}">{{ child.title }}</a></li>
+            {% endfor %}
+    {% endif %}
+{% endfor %}

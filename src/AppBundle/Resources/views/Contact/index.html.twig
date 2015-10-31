@@ -9,12 +9,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h3>Jarys DP</h3>
-                        <ul>
-                            <li>
-                                Guido Gezellestraat 5
+                        <ul class="contact-list">
+                            <li>Guido Gezellestraat 5
                             </li>
-                            <li>
-                                2630 Aartselaar
+                            <li>2630 Aartselaar
                             </li>
                             <li>
                                 <i class="fa fa-phone"></i> +32 (0)3 870 63 93
@@ -26,7 +24,24 @@
                     </div>
 
                     <div class="col-md-6">
-
+                        <h3>Contacteer ons</h3>
+                        <form action="/make-contact" method="post">
+                            <div class="form-group">
+                                <label for="InputName">Naam</label>
+                                <input type="text" class="form-control" id="InputName">
+                            </div>
+                            <div class="form-group">
+                                <label for="InputEmail">E-mail</label>
+                                <input type="email" class="form-control" id="InputEmail">
+                            </div>
+                            <div class="form-group">
+                                <label for="InputText">Bericht</label>
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                            <button class="btn-jarys" type="submit">Verzenden</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -34,6 +34,10 @@ var paths = {
         ],
         'app': [
             'vendor/clastic/*/Resources/public/scripts/**.js'
+        ],
+        'front': [
+            'app/Resources/scripts/*.js',
+            'app/Resources/scripts/*/*.js',
         ]
     },
     'templates': 'src/**/*.twig',
@@ -74,6 +78,7 @@ gulp.task('watch', function() {
 
     gulp.watch(paths.scripts.vendor, ['scripts:vendor']);
     gulp.watch(paths.scripts.app, ['scripts:app']);
+    gulp.watch(paths.scripts.front, ['scripts:front']);
 
     gulp.watch(paths.styles.vendor, ['styles:vendor']);
     gulp.watch(paths.styles.app, ['styles:app']);
@@ -85,7 +90,7 @@ gulp.task('watch', function() {
         .on('change', livereload.changed);
 });
 
-gulp.task('scripts', ['scripts:vendor', 'scripts:app']);
+gulp.task('scripts', ['scripts:vendor', 'scripts:app', 'scripts:front']);
 
 gulp.task('scripts:vendor', function() {
     gulp.src(paths.scripts.vendor)
@@ -104,6 +109,17 @@ gulp.task('scripts:app', function() {
         .pipe(uglify())
         .on('error', errorHandler)
         .pipe(rename('app.min.js'))
+        .pipe(gulp.dest(paths.build))
+        .pipe(filesize());
+});
+
+gulp.task('scripts:front', function() {
+    gulp.src(paths.scripts.front)
+        .pipe(concat('jarys.js'))
+        .pipe(stripDebug())
+        .pipe(uglify())
+        .on('error', errorHandler)
+        .pipe(rename('jarys.min.js'))
         .pipe(gulp.dest(paths.build))
         .pipe(filesize());
 });

@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+
+{% block pageTypeClass %}page-downloads{% endblock %}
+
+{% block content %}
+    <div class="content-menu">
+        <div class="container">
+            <div class="row">
+                <ul class="list-unstyled sub-menu blauw">
+                    {% for item in record.items %}
+                    <li class="col-md-6">
+                        <a href="#{{ item.node.alias.alias }}" class="js-show-page">
+                            {{ item.displayTitle }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+        </div>
+        </div>
+    </div>
+
+    <div class="content-mid">
+        {% for item in record.items %}
+        <div id="{{ item.node.alias.alias }}" class="content-switcher">
+        <div class="container">
+            <div class="sub-menu-title blauw">
+                <i class="fa fa-info"></i>
+                <span class="sub-title">{{ item.displayTitle }}</span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="product-info">
+                {{ item.content|raw }}
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

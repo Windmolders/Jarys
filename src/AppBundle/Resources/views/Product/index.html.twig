@@ -9,20 +9,28 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h3>
+                            {% if record.title1 %}
                             {{ record.title1 }}
+                            {% else %}
+                            &nbsp;
+                            {% endif %}
                         </h3>
-                        <p>
+                        {% if record.intro1 %}
                             {{ record.intro1|raw }}
-                        </p>
+                        {% endif %}
                     </div>
 
                     <div class="col-md-6">
                         <h3>
+                            {% if record.title1 %}
                             {{ record.title2 }}
+                            {% else %}
+                            &nbsp;
+                            {% endif %}
                         </h3>
-                        <p>
+                        {% if record.intro2 %}
                             {{ record.intro2|raw }}
-                        </p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -39,10 +47,10 @@
         <div class="container">
             <div class="row">
                 <ul class="list-unstyled sub-menu {{ record.class }}">
-                    {% for info in record.getProductInfo() %}
+                    {% for info in record.getProductInfos() %}
                     <li class="col-md-6">
                         <a href="#{{ info.node.alias.alias }}" class="js-show-page">
-                            Folders en brochures
+                            {{ info.displayTitle }}
                         </a>
                     </li>
                     {% endfor %}
@@ -52,11 +60,21 @@
     </div>
 
     <div class="content-mid">
+        {% for info in record.getProductInfos() %}
+        <div id="{{ info.node.alias.alias }}" class="content-switcher">
         <div class="container">
-            <div class="">
-
+            <div class="sub-menu-title {{ record.class }}">
+                <i class="fa fa-info"></i>
+                <span class="sub-title">{{ info.displayTitle }}</span>
             </div>
         </div>
+        <div class="container">
+            <div class="product-info">
+                {{ info.content|raw }}
+            </div>
+        </div>
+        </div>
+        {% endfor %}
     </div>
 
 

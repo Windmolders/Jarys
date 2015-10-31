@@ -67,6 +67,27 @@ class Product implements NodeReferenceInterface
     private $displayTitle ;
 
     /**
+     * @var array
+     */
+    private $productInfos;
+
+    /**
+     * @return array
+     */
+    public function getProductInfos()
+    {
+        return $this->productInfos;
+    }
+
+    /**
+     * @param array $productInfos
+     */
+    public function setProductInfos($productInfos)
+    {
+        $this->productInfos = $productInfos;
+    }
+
+    /**
      * @return string
      */
     public function getDisplayTitle()
