@@ -10,10 +10,13 @@
     position: relative;
     margin: 2px 0;
     color: lighten(#595d65, 10%);
+    font-size: 24px;
+    font-weight: 300;
+    font-family: $font-family-sans-serif;
     &:before {
       font-family: 'fontawesome';
       content: $fa-var-angle-right;
-      color: $jarys-green;
+      color: $jarys-blue;
       font-size: 16px;
       margin-right: 10px;
     }
@@ -23,27 +26,13 @@
 .form-control {
   border-radius: 0;
   background-color: lighten($body-bg, 10%);
-  border: lighten($body-bg, 5%);
+  border: 1px solid lighten($body-bg, 5%);
   color: #ddd;
   padding: 20px;
   &:focus {
     outline: 0;
-    border: lighten($body-bg, 5%);
-  }
-}
-
-.btn-jarys {
-  border-radius: 0;
-  border: 1px solid $jarys-blue;
-  padding: 10px 20px;
-  text-transform: uppercase;
-  font-family: $font-family-sans-serif;
-  background-color: transparent;
-  color: $jarys-blue;
-  transition: all 1s ease;
-  &:hover, &:focus {
-    color: #fff;
-    border-color: #fff;
+    border-color: lighten($jarys-blue, 5%);
+    box-shadow: none;
   }
 }
 

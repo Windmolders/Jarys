@@ -1,0 +1,18 @@
+.btn-jarys {
+  border-radius: 0;
+  border: 1px solid $jarys-blue;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-family: $font-family-sans-serif;
+  background-color: transparent;
+  color: $jarys-blue;
+  transition: all 1s ease;
+  &:hover, &:focus {
+    color: #fff;
+    border-color: #fff;
+  }
+  &.green {
+    border-color: $jarys-green;
+    color: $jarys-green;
+  }
+}

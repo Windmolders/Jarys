@@ -17,7 +17,7 @@ class DownloadController extends Controller
             'record' => array(
                 'icon' => 'fa-download',
                 'class' => '',
-                'displayTitle' => 'Download',
+                'displayTitle' => 'Downloads',
                 'items' => $this->getDoctrine()
                     ->getRepository('AppBundle:Download')
                     ->findAll()

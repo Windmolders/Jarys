@@ -1,7 +1,7 @@
 {% for item in tree %}
     <li class="nav-item">
         <a class="nav-link" href="{{ item._link }}">
-            {{ item.title }}
+            {{ item.title }}   {% if item.__children %}<i class="fa fa-angle-down"></i>{% endif %}
         </a>
         {% if item.__children %}
             <div class="dropdown-menu">

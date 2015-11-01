@@ -128,3 +128,15 @@
     background-color: $jarys-red;
   }
 }
+
+
+//
+// responsive
+// -------------------
+
+@media screen and (max-width: $screen-sm-max) {
+  .home-page-product-wrapper {
+    width: 100%;
+  }
+}
+

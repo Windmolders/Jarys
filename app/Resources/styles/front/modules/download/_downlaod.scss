@@ -1,0 +1,27 @@
+.page-downloads {
+  .content-menu {
+    margin-top: 0;
+    background-color: $body-bg;
+    .sub-menu li a {
+      background-color: $submenu-bg;
+      color: $jarys-green;
+      &:before {
+        background-color: $jarys-green;
+      }
+      &:hover, &:focus {
+        background-color: darken($body-bg, 2%);
+        &:before {
+          background-color: darken($jarys-green, 10%);
+        }
+      }
+    }
+  }
+  .content-mid {
+    .sub-title {
+      background-color: $body-bg;
+    }
+    i {
+      background-color: $jarys-green;
+    }
+  }
+}

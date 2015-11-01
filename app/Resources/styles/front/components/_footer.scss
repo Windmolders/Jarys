@@ -21,3 +21,15 @@
     text-transform: uppercase;
   }
 }
+
+// 
+// responsive 
+// -------------------
+
+@media screen and (max-width: $screen-sm-max) {
+  .footer {
+    .text-right {
+      text-align: left;
+    }
+  }
+}

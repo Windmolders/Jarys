@@ -10,6 +10,7 @@
 // Base styling
 @import 'base/base';
 @import 'base/icons';
+@import 'base/userContent';
 
 // Components
 @import 'components/navbar';
@@ -20,9 +21,11 @@
 @import 'components/product';
 @import 'components/intro';
 @import 'components/contentMenu';
-@import 'components/map';
+@import 'components/contact';
 @import 'components/productInfo';
-@import 'components/downlaod';
+@import 'components/button';
+@import 'components/error';
 
 // Modules
 @import 'modules/product/product';
+@import 'modules/download/downlaod';

@@ -11,6 +11,24 @@
   height: 80px;
   box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
   z-index: 10;
+  &.affix {
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  .navbar-toggle {
+    color: $navbar-color;
+    height: 80px;
+    margin: 0;
+    width: 80px;
+    padding: 0;
+    .fa {
+      height: 80px;
+      line-height: 80px;
+      font-size: 30px;
+      text-align: center;
+    }
+  }
 }
 
 .navbar-brand {
@@ -65,6 +83,39 @@
       color: $navbar-color;
       text-transform: uppercase;
       font-size: 18px;
+      background-color: $navbar-bg;
     }
   }
 }
+
+//
+// responsive
+// -------------------
+
+@media screen and (min-width: $screen-md-min) {
+  .jarys-navbar {
+    .navbar-nav {
+      display: block;
+    }
+  }
+}
+
+@media screen and (max-width: $screen-sm-max) {
+  .jarys-navbar {
+    .text-right {
+      text-align: left;
+    }
+    .navbar-nav {
+      position: absolute;
+      left: 0;
+      top: 80px;
+      margin: 0;
+      z-index: 999;
+      width: 100%;
+    }
+    .navbar-toggle {
+      display: block;
+    }
+  }
+}
+
