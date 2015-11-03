@@ -1,26 +1,37 @@
 <?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="app_bundle.product.module.class">AppBundle\Module\ProductModule</parameter>
+        <parameter key="app_bundle.product.module.form_extension.class">AppBundle\Form\Module\ProductFormExtension</parameter>
+        <parameter key="app_bundle.product_info.module.class">AppBundle\Module\ProductInfoModule</parameter>
+        <parameter key="app_bundle.product_info.module.form_extension.class">AppBundle\Form\Module\ProductInfoFormExtension</parameter>
+        <parameter key="app_bundle.contact.module.class">AppBundle\Module\ContactModule</parameter>
+        <parameter key="app_bundle.contact.module.form_extension.class">AppBundle\Form\Module\ContactFormExtension</parameter>
+        <parameter key="app_bundle.menu.twig_extension.jarys_menu.class">AppBundle\Twig\JarysMenuExtension</parameter>
+        <parameter key="app_bundle.downloads.module.class">AppBundle\Module\DownloadsModule</parameter>
+        <parameter key="app_bundle.downloads.module.form_extension.class">AppBundle\Form\Module\DownloadsFormExtension</parameter>
+    </parameters>
 
-
-<parameters>
-    <parameter key="app_bundle.product.module.class">AppBundle\Module\ProductModule</parameter>
-    <parameter key="app_bundle.product.module.form_extension.class">AppBundle\Form\Module\ProductFormExtension</parameter>
-    <parameter key="app_bundle.product_info.module.class">AppBundle\Module\ProductInfoModule</parameter>
-    <parameter key="app_bundle.product_info.module.form_extension.class">AppBundle\Form\Module\ProductInfoFormExtension</parameter>
-    <parameter key="app_bundle.contact.module.class">AppBundle\Module\ContactModule</parameter>
-    <parameter key="app_bundle.contact.module.form_extension.class">AppBundle\Form\Module\ContactFormExtension</parameter>
-
-    <parameter key="app_bundle.menu.twig_extension.jarys_menu.class">AppBundle\Twig\JarysMenuExtension</parameter>
-<parameter key="app_bundle.downloads.module.class">AppBundle\Module\DownloadsModule</parameter><parameter key="app_bundle.downloads.module.form_extension.class">AppBundle\Form\Module\DownloadsFormExtension</parameter></parameters>
     <services>
         <service id="app_bundle.menu.twig_extension.jarys_menu" class="%app_bundle.menu.twig_extension.jarys_menu.class%" public="false">
             <tag name="twig.extension"/>
             <argument type="service" id="clastic.repo.menu_item"/>
         </service>
-
         <service id="app_bundle.product.module" class="%app_bundle.product.module.class%">
             <tag name="clastic.module" node_module="true" alias="product"/>
             <tag name="clastic.node_form" build_service="app_bundle.product.module.form_extension"/>
         </service>
-        <service id="app_bundle.product.module.form_extension" class="%app_bundle.product.module.form_extension.class%"/><service id="app_bundle.product_info.module" class="%app_bundle.product_info.module.class%"><tag name="clastic.module" node_module="true" alias="product_info"/><tag name="clastic.node_form" build_service="app_bundle.product_info.module.form_extension"/></service><service id="app_bundle.product_info.module.form_extension" class="%app_bundle.product_info.module.form_extension.class%"/><service id="app_bundle.contact.module" class="%app_bundle.contact.module.class%"><tag name="clastic.module" node_module="true" alias="contact"/><tag name="clastic.node_form" build_service="app_bundle.contact.module.form_extension"/></service><service id="app_bundle.contact.module.form_extension" class="%app_bundle.contact.module.form_extension.class%"/><service id="app_bundle.downloads.module" class="%app_bundle.downloads.module.class%"><tag name="clastic.module" node_module="true" alias="downloads"/><tag name="clastic.node_form" build_service="app_bundle.downloads.module.form_extension"/></service><service id="app_bundle.downloads.module.form_extension" class="%app_bundle.downloads.module.form_extension.class%"/></services></container>
+        <service id="app_bundle.product.module.form_extension" class="%app_bundle.product.module.form_extension.class%"/>
+        <service id="app_bundle.product_info.module" class="%app_bundle.product_info.module.class%">
+            <tag name="clastic.module" node_module="true" alias="product_info"/>
+            <tag name="clastic.node_form" build_service="app_bundle.product_info.module.form_extension"/>
+        </service>
+        <service id="app_bundle.product_info.module.form_extension" class="%app_bundle.product_info.module.form_extension.class%"/>
+        <service id="app_bundle.downloads.module" class="%app_bundle.downloads.module.class%">
+            <tag name="clastic.module" node_module="true" alias="downloads"/>
+            <tag name="clastic.node_form" build_service="app_bundle.downloads.module.form_extension"/>
+        </service>
+        <service id="app_bundle.downloads.module.form_extension" class="%app_bundle.downloads.module.form_extension.class%"/>
+    </services>
+    </container>
