@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Clastic\MenuBundle\Module;
+namespace Clastic\ContactFormBundle\Module;
 
 use Clastic\CoreBundle\Module\ModuleInterface;
 

@@ -6,5 +6,11 @@
     </id>
     <field name="name" type="string" column="name" length="255"/>
     <field name="description" type="text" column="description"/>
+
+    <many-to-one field="contactFormDatas" target-entity="Clastic\ContactFormBundle\Entity\ContactFormData" inversed-by="type">
+      <cascade><cascade-all/></cascade>
+      <join-column name="contact_form_data_id" referenced-column-name="id" />
+    </many-to-one>
+
   </entity>
 </doctrine-mapping>

@@ -22,6 +22,26 @@ class ContactFormType
      */
     private $description;
 
+    /**
+     * @var array
+     */
+    private $contactFormDatas;
+
+    /**
+     * @return array
+     */
+    public function getContactFormDatas()
+    {
+        return $this->contactFormDatas;
+    }
+
+    /**
+     * @param array $contactFormDatas
+     */
+    public function setContactFormDatas($contactFormDatas)
+    {
+        $this->contactFormDatas = $contactFormDatas;
+    }
 
     /**
      * Get id

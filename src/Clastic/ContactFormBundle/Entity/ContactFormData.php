@@ -38,7 +38,7 @@ class ContactFormData
     private $message;
 
     /**
-     * @var string
+     * @var ContactFormType
      */
     private $type;
 
@@ -198,11 +198,11 @@ class ContactFormData
     /**
      * Set type
      *
-     * @param string $type
+     * @param ContactFormType $type
      *
      * @return ContactFormData
      */
-    public function setType($type)
+    public function setType(ContactFormType $type)
     {
         $this->type = $type;
 
@@ -212,7 +212,7 @@ class ContactFormData
     /**
      * Get type
      *
-     * @return string
+     * @return ContactFormType
      */
     public function getType()
     {
