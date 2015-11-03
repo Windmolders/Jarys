@@ -1,7 +1,3 @@
-jwi_contact:
-    resource: "@JwiContactBundle/Resources/config/routing.xml"
-    prefix:   /
-
 _clastic_admin:
     resource: routing_admin.yml
     prefix: admin

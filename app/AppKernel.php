@@ -40,7 +40,8 @@ class AppKernel extends Kernel
 
             // Your project
             new AppBundle\AppBundle(),
-            new Jwi\ContactBundle\JwiContactBundle(),
+            //new Jwi\ContactBundle\JwiContactBundle(),
+            new Clastic\ContactFormBundle\ClasticContactFormBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
