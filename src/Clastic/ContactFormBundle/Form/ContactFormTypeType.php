@@ -1,20 +1,16 @@
 <?php
 
-namespace Clastic\ContactFormBundle\Form\Type;
+namespace Clastic\ContactFormBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-/**
- * ContactFormTypeType
- *
- * @author Jonas Windmolders <jonas_windmolders@hotmail.com>
- */
-class ContactFormTypeFormType extends AbstractType
+class ContactFormTypeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -60,14 +56,22 @@ class ContactFormTypeFormType extends AbstractType
             ))
             ;
     }
+    
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Clastic\ContactFormBundle\Entity\ContactFormType'
+        ));
+    }
 
     /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
+     * @return string
      */
     public function getName()
     {
-        return 'clastic_contact_form_type';
+        return 'clastic_contactformbundle_contactformtype';
     }
 }

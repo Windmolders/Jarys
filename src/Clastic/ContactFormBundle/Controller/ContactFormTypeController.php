@@ -1,106 +1,270 @@
 <?php
 
-/**
- * This file is part of the Clastic package.
- *
- * (c) Dries De Peuter <dries@nousefreak.be>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 namespace Clastic\ContactFormBundle\Controller;
 
-use Clastic\BackofficeBundle\Controller\AbstractModuleController;
-use Clastic\ContactFormBundle\Entity\ContactFormType;
-use Clastic\ContactFormBundle\Form\Type\ContactFormTypeFormType;
-use Clastic\NodeBundle\Node\NodeReferenceInterface;
-use Symfony\Component\Form\Form;
+use Doctrine\ORM\QueryBuilder;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Clastic\ContactFormBundle\Entity\ContactFormType;
+use Clastic\ContactFormBundle\Form\ContactFormTypeType;
 
 /**
- * ContactFormTypeController.
+ * ContactFormType controller.
  *
- * @author Dries De Peuter <dries@nousefreak.be>
  */
-class ContactFormTypeController extends AbstractModuleController
+class ContactFormTypeController extends Controller
 {
-    /**
-     * @return string
-     */
-    protected function getType()
-    {
-        return 'contact_form_type';
+
+    public function getType() {
+        return 'contact_form';
     }
 
-    /**
-     * @return string
-     */
-    protected function getListTemplate()
-    {
-        return 'ClasticContactFormBundle:Backoffice:list_type.html.twig';
-    }
-
-    /**
-     * @param object $data
-     *
-     * @return Form
-     */
-    protected function buildForm($data)
-    {
-        return $this->createForm(new ContactFormTypeFormType($this->get('router')), $data);
-    }
-
-    /**
-     * @param object $data
-     *
-     * @return string
-     */
-    protected function resolveDataTitle($data)
-    {
-        return $data->getTitle();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getEntityName()
-    {
+    public function getEntityName() {
         return 'ClasticContactFormBundle:ContactFormType';
     }
 
     /**
-     * @param int $id
+     * @param QueryBuilder $queryBuilder
      *
-     * @return NodeReferenceInterface
+     * @return QueryBuilder
      */
-    protected function resolveData($id)
+    protected function alterListQuery(QueryBuilder $queryBuilder)
     {
-        if (!is_null($id)) {
-            return $this->getDoctrine()->getRepository($this->getEntityName())
-                ->find($id);
+        return $queryBuilder;
+    }
+
+    /**
+     * Lists all ContactFormType entities.
+     *
+     */
+    public function indexAction(Request $request)
+    {
+        $queryBuilder = $this->getDoctrine()
+            ->getManager()
+            ->createQueryBuilder()
+            ->select('e')
+            ->from($this->getEntityName(), 'e')
+            ->orderBy('e.id', 'DESC');
+
+        $adapter = new DoctrineORMAdapter($this->alterListQuery($queryBuilder));
+        $data = new Pagerfanta($adapter);
+        $data->setCurrentPage($request->query->get('page', 1));
+
+        return $this->render('ClasticContactFormBundle:Backoffice:index.html.twig', array(
+            'data' => $data,
+            'type' => $this->getType(),
+            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
+            'submodules' => array(),
+        ));
+    }
+    /**
+     * Creates a new ContactFormType entity.
+     *
+     */
+    public function createAction(Request $request)
+    {
+        $entity = new ContactFormType();
+        $form = $this->createCreateForm($entity);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('contact-form-type_show', array('id' => $entity->getId())));
         }
 
-        return new ContactFormType();
+        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+            'type' => $this->getType(),
+            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
+            'submodules' => array(),
+        ));
     }
 
     /**
-     * @param object $data
+     * Creates a form to create a ContactFormType entity.
      *
-     * @return string
+     * @param ContactFormType $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
      */
-    protected function getFormSuccessUrl($data)
+    private function createCreateForm(ContactFormType $entity)
     {
-        return $this->generateUrl('clastic_backoffice_contact_form_type_form', array(
-            'id' => $data->getId(),
+        $form = $this->createForm(new ContactFormTypeType(), $entity, array(
+            'action' => $this->generateUrl('contact-form-type_create'),
+            'method' => 'POST',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Create'));
+
+        return $form;
+    }
+
+    /**
+     * Displays a form to create a new ContactFormType entity.
+     *
+     */
+    public function newAction()
+    {
+        $entity = new ContactFormType();
+        $form   = $this->createCreateForm($entity);
+
+        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+            'type' => $this->getType(),
+            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
+            'submodules' => array(),
         ));
     }
 
     /**
-     * @return string
+     * Finds and displays a ContactFormType entity.
+     *
      */
-    protected function getListUrl()
+    public function showAction($id)
     {
-        return $this->generateUrl('clastic_backoffice_contact_form_type_list', array(
+        $em = $this->getDoctrine()->getManager();
 
+        $entity = $em->getRepository('ClasticContactFormBundle:ContactFormType')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find ContactFormType entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('ClasticContactFormBundle:Backoffice:show.html.twig', array(
+            'entity'      => $entity,
+            'delete_form' => $deleteForm->createView(),
+            'type' => $this->getType(),
+            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
+            'submodules' => array(),
         ));
+    }
+
+    /**
+     * Displays a form to edit an existing ContactFormType entity.
+     *
+     */
+    public function editAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('ClasticContactFormBundle:ContactFormType')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find ContactFormType entity.');
+        }
+
+        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+            'type' => $this->getType(),
+            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
+            'submodules' => array(),
+        ));
+    }
+
+    /**
+    * Creates a form to edit a ContactFormType entity.
+    *
+    * @param ContactFormType $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(ContactFormType $entity)
+    {
+        $form = $this->createForm(new ContactFormTypeType(), $entity, array(
+            'action' => $this->generateUrl('contact-form-type_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Update'));
+
+        return $form;
+    }
+    /**
+     * Edits an existing ContactFormType entity.
+     *
+     */
+    public function updateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('ClasticContactFormBundle:ContactFormType')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find ContactFormType entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('contact-form-type_edit', array('id' => $id)));
+        }
+
+        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+            'type' => $this->getType(),
+            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
+            'submodules' => array(),
+        ));
+    }
+    /**
+     * Deletes a ContactFormType entity.
+     *
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('ClasticContactFormBundle:ContactFormType')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find ContactFormType entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('contact-form-type'));
+    }
+
+    /**
+     * Creates a form to delete a ContactFormType entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('contact-form-type_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->getForm()
+        ;
     }
 }

@@ -1,0 +1,30 @@
+{% extends 'ClasticBackofficeBundle::base.html.twig' %}
+
+{% block html_title %}Clastic - {{ page_title|default(module.name) }}{% endblock %}
+{% block page_title %}{{ page_title|default(module.name) }}{% endblock %}
+
+{% block header_actions %}
+{% endblock %}
+
+{% block page_title -%}
+    Contact data
+    <a class="btn-add" href="{{ path('contact-form-data_new') }}"><i class="fa fa-plus"></i> Add</a>
+{%- endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <section class="node-form">
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success" role="alert">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                <header class="header"></header>
+                {{ form_start(form, {attr: {role: 'form'}}) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </section>
+        </div>
+    </div>
+{% endblock %}

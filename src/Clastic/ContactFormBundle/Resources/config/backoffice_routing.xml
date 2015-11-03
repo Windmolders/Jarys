@@ -3,30 +3,4 @@
 <routes xmlns="http://symfony.com/schema/routing"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
-
-    <route id="clastic_backoffice_contact_form_data_list" path="/contact-form-data/list">
-        <default key="_controller">ClasticContactFormBundle:ContactFormData:list</default>
-    </route>
-
-    <route id="clastic_backoffice_contact_form_data_form" path="/contact-form-data/edit/{id}">
-        <default key="_controller">ClasticContactFormBundle:ContactFormData:form</default>
-        <default key="id" xsi:nil="true" />
-    </route>
-
-    <route id="clastic_backoffice_contact_form_data_delete" path="/contact-form-data/delete/{id}">
-        <default key="_controller">ClasticContactFormBundle:ContactFormData:delete</default>
-    </route>
-
-    <route id="clastic_backoffice_contact_form_type_list" path="/contact-form-type/list">
-        <default key="_controller">ClasticContactFormBundle:ContactFormType:list</default>
-    </route>
-
-    <route id="clastic_backoffice_contact_form_type_form" path="/contact-form-type/edit/{id}">
-        <default key="_controller">ClasticContactFormBundle:ContactFormType:form</default>
-        <default key="id" xsi:nil="true" />
-    </route>
-
-    <route id="clastic_backoffice_contact_form_type_delete" path="/contact-form-type/delete/{id}">
-        <default key="_controller">ClasticContactFormBundle:ContactFormType:delete</default>
-    </route>
 </routes>

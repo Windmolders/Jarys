@@ -18,3 +18,13 @@ clastic_backoffice:
 
 clastic_contact_form:
     resource: "@ClasticContactFormBundle/Resources/config/backoffice_routing.xml"
+
+clastic_contact_form_contact-form-data:
+    resource: "@ClasticContactFormBundle/Resources/config/routing/contactformdata.xml"
+    prefix:   /contact-form-data
+
+clastic_contact_form_contact-form-type:
+    resource: "@ClasticContactFormBundle/Resources/config/routing/contactformtype.xml"
+    prefix:   /contact-form-type
+
+

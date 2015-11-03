@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="contact-form-data" path="/">
+        <default key="_controller">ClasticContactFormBundle:ContactFormData:index</default>
+    </route>
+
+    <route id="contact-form-data_show" path="/{id}/show">
+        <default key="_controller">ClasticContactFormBundle:ContactFormData:show</default>
+    </route>
+
+    <route id="contact-form-data_new" path="/new">
+        <default key="_controller">ClasticContactFormBundle:ContactFormData:new</default>
+    </route>
+
+    <route id="contact-form-data_create" path="/create" methods="POST">
+        <default key="_controller">ClasticContactFormBundle:ContactFormData:create</default>
+    </route>
+
+    <route id="contact-form-data_edit" path="/{id}/edit">
+        <default key="_controller">ClasticContactFormBundle:ContactFormData:edit</default>
+    </route>
+
+    <route id="contact-form-data_update" path="/{id}/update" methods="POST|PUT">
+        <default key="_controller">ClasticContactFormBundle:ContactFormData:update</default>
+    </route>
+
+    <route id="contact-form-data_delete" path="/{id}/delete" methods="POST|DELETE">
+        <default key="_controller">ClasticContactFormBundle:ContactFormData:delete</default>
+    </route>
+
+</routes>
