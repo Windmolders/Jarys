@@ -40,6 +40,7 @@ class AppKernel extends Kernel
 
             // Your project
             new AppBundle\AppBundle(),
+            new Jwi\ContactBundle\JwiContactBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
