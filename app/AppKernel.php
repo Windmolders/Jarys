@@ -40,7 +40,6 @@ class AppKernel extends Kernel
 
             // Your project
             new AppBundle\AppBundle(),
-            //new Jwi\ContactBundle\JwiContactBundle(),
             new Clastic\ContactFormBundle\ClasticContactFormBundle(),
         );
 
