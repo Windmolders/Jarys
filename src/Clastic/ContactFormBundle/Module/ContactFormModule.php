@@ -27,6 +27,47 @@ class ContactFormModule implements ModuleInterface
     }
 
     /**
+     * Check if it's a normal or node module
+     *
+     * @return string
+     */
+    public function isNormalModule()
+    {
+        return true;
+    }
+
+    /**
+     * Gets the controller data for creating a tab system.
+     *
+     * @return array
+     */
+    public function getModuleControllers()
+    {
+        return array(
+            '1' => array (
+                'type' => 'contact_form_data',
+                'title' => 'Data',
+                'url' =>  'contact-form-data',
+            ),
+            '2' => array (
+                'type' => 'contact_form_type',
+                'title' => 'Categories',
+                'url' =>  'contact-form-type',
+            )
+        );
+    }
+
+    /**
+     * The default path of the module
+     *
+     * @return string
+     */
+    public function getDefaultPath()
+    {
+        return 'contact-form-data';
+    }
+
+    /**
      * The the unique identifier of the module.
      *
      * @return string

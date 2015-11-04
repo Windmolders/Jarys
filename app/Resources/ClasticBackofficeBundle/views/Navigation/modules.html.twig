@@ -1,0 +1,30 @@
+{% trans_default_domain 'clastic' %}
+<li class="dropdown modules js-nav-module-list">
+    <a aria-expanded="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">
+        <i class="fa fa-dot-circle-o"></i> {{ 'navigation.module.modules'|trans }}
+        <span class="caret"></span>
+    </a>
+    <ul role="menu" class="dropdown-menu modules">
+        <li class="dropdown-header">{{ 'navigation.module.modules'|trans }}</li>
+        <li>
+            <ul>
+                {% for module in modules %}
+                    {% if module.isNormalModule() is defined and module.isNormalModule() %}
+                        <li><a href="{{ path(module.getDefaultPath()) }}">{{ module.name }}</a></li>
+                    {% else %}
+                        <li><a href="{{ path('clastic_node_list', {type: module.identifier}) }}">{{ module.name }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="divider"></li>
+        <li class="dropdown-header">{{ 'navigation.module.administration'|trans }}</li>
+        <li>
+            <ul>
+                {% for module in administrationModules %}
+                    <li><a href="{{ path('clastic_node_list', {type: module.identifier}) }}">{{ module.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</li>

@@ -26,6 +26,13 @@ class ContactFormDataController extends Controller
     /**
      * @return string
      */
+    public function getEntityType() {
+        return 'contact_form_data';
+    }
+
+    /**
+     * @return string
+     */
     public function getEntityName() {
         return 'ClasticContactFormBundle:ContactFormData';
     }
@@ -34,7 +41,7 @@ class ContactFormDataController extends Controller
      * @return string
      */
     public function getDisplayTitle() {
-        return 'Contact form data';
+        return 'Contact form';
     }
 
     /**
@@ -60,6 +67,7 @@ class ContactFormDataController extends Controller
     public function getTemplateData() {
         return array(
             'type' => $this->getType(),
+            'entityType' => $this->getEntityType(),
             'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
             'submodules' => array(),
             'links' => $this->addBackofficeLinks(),
@@ -157,7 +165,7 @@ class ContactFormDataController extends Controller
         $entity = new ContactFormData();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig',
+        return $this->render('ClasticContactFormBundle:Backoffice:new.html.twig',
             array_merge(
                 array(
                     'entity' => $entity,
@@ -183,10 +191,11 @@ class ContactFormDataController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ClasticContactFormBundle:Backoffice:show.html.twig',
+        return $this->render('ClasticContactFormBundle:Backoffice:Data/show.html.twig',
             array_merge(
                 array(
                     'entity' => $entity,
+                    'record' => $entity,
                     'delete_form' => $deleteForm->createView(),
                 ),
                 $this->getTemplateData()

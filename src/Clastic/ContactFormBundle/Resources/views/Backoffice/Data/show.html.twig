@@ -1,0 +1,78 @@
+{% extends 'ClasticBackofficeBundle::base.html.twig' %}
+
+{% block html_title %}Jarys - {{ page_title|default(module.name) }}{% endblock %}
+
+{% block header_actions %}
+{% endblock %}
+
+{% block page_title -%}
+    {{ displayTitle }}
+    <a class="btn-add" href="{{ path('contact-form-data_new') }}"><i class="fa fa-plus"></i> Add</a>
+{%- endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <section class="node-form">
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success" role="alert">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                <header class="header"></header>
+
+                <div role="tabpanel" class="tabpanel">
+                    <ul class="nav nav-tabs" role="tablist">
+                            <li class="active"><a href="#">Data {{ entity.id }}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div  class="tab-pane active">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                    <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ entity.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Companyname</th>
+                        <td>{{ entity.companyName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mail</th>
+                        <td>{{ entity.mail }}</td>
+                    </tr>
+                    <tr>
+                        <th>State</th>
+                        <td>{{ entity.state }}</td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <td>{{ entity.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Message</th>
+                        <td>{{ entity.message|raw }}</td>
+                    </tr>
+                    <tr>
+                        <th>Social</th>
+                        <td>{% for social in entity.social %}{{ social }}<br/>{% endfor %}</td>
+                    </tr>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ entity.id }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div>
+                    <a class="btn btn-info btn-sm" title="Show" href="{{ path(links.list, { 'id': record.id}) }}"><i class="fa fa-list"></i></a>
+                    <a class="btn btn-success btn-sm" title="Edit" href="{{ path(links.edit, { 'id': record.id}) }}"><i class="fa fa-pencil"></i></a>
+                    <a class="btn btn-danger btn-sm" title="Delete" href="{{ path(links.delete, { 'id': record.id}) }}"><i class="fa fa-trash"></i></a>
+                </div>
+
+                </div></div></div></div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

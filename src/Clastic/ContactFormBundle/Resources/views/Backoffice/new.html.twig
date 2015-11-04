@@ -1,15 +1,29 @@
-{% extends '::base.html.twig' %}
+{% extends 'ClasticBackofficeBundle::base.html.twig' %}
 
-{% block body -%}
-    <h1>ContactFormData creation</h1>
+{% block html_title %}Jarys - {{ page_title|default(module.name) }}{% endblock %}
 
-    {{ form(form) }}
+{% block header_actions %}
+{% endblock %}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('contact-form-data') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+{% block page_title -%}
+    {{ displayTitle }}
+    <a class="btn-add" href="{{ path('contact-form-data_new') }}"><i class="fa fa-plus"></i> Add</a>
+{%- endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <section class="node-form">
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success" role="alert">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                <header class="header"></header>
+                {{ form_start(form, {attr: {role: 'form'}}) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </section>
+        </div>
+    </div>
 {% endblock %}

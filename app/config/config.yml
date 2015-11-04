@@ -77,3 +77,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+clastic_google_analytics:
+    client_id: UA-69726706-1
+    profile_id: 2

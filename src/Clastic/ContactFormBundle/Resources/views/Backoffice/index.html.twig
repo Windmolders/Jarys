@@ -2,28 +2,78 @@
 
 {% trans_default_domain 'clastic' %}
 
+{% block html_title %}Jarys - {{ page_title|default(module.name) }}{% endblock %}
+
 {% block page_title -%}
-    {{ displayTitle }} - list
+    {{ module.name }} - list
     <a class="btn-add" href="{{ path(links.new) }}"><i class="fa fa-plus"></i> Add</a>
 {%- endblock %}
 
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <section class="entity-list">
+                {% include 'ClasticBackofficeBundle:FlashMessage:render.html.twig' %}
+                <header class="header"></header>
 
-{% block list_header %}
-    <tr>
-        <th></th>
-        <th>{{ 'list.title'|trans }}</th>
-        <th>{{ 'list.status'|trans }}</th>
-    </tr>
-{% endblock %}
+                <div role="tabpanel" class="tabpanel">
+                    <ul class="nav nav-tabs" role="tablist">
+                        {% for controller in module.getModuleControllers() %}
+                            <li{% if controller.type == entityType %} class="active"{% endif %}><a href="{{ path(controller.url) }}">{{ controller.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <div class="tab-content">
+                            <div  class="tab-pane active">
 
-{% block list_body %}
-    <tr>
-        <td>
-            <a class="btn btn-info btn-xs" title="Show" href="{{ path(links.show, { 'id': record.id}) }}"><i class="fa fa-search"></i></a>
-            <a class="btn btn-success btn-xs" title="Edit" href="{{ path(links.edit, { 'id': record.id}) }}"><i class="fa fa-pencil"></i></a>
-            <a class="btn btn-danger btn-xs" title="Delete" href="{{ path(links.delete, { 'id': record.id}) }}"><i class="fa fa-trash"></i></a>
-        </td>
-        <td>{{ record.name }} - {{ record.title }}</td>
-        <td></td>
-    </tr>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                        {% block list_header %}
+                                            <tr>
+                                                <th></th>
+                                                <th>{{ 'Name'|trans }}</th>
+                                                <th>{{ 'list.status'|trans }}</th>
+                                            </tr>
+                                        {% endblock %}
+                                        </thead>
+                                        <tbody>
+                                        {% for record in data %}
+                                            {% block list_body %}
+                                                <tr>
+                                                    <td>
+                                                        <a class="btn btn-info btn-xs" title="Show" href="{{ path(links.show, { 'id': record.id}) }}"><i class="fa fa-search"></i></a>
+                                                        <a class="btn btn-success btn-xs" title="Edit" href="{{ path(links.edit, { 'id': record.id}) }}"><i class="fa fa-pencil"></i></a>
+                                                        <a class="btn btn-danger btn-xs" title="Delete" href="{{ path(links.delete, { 'id': record.id}) }}"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                    <td>{{ record.name }}</td>
+                                                    <td>{% if record.state is defined %}
+                                                            {{ record.getStates()[record.state] }}
+                                                        {% endif %}</td>
+                                                </tr>
+                                            {% endblock %}
+                                        {% else %}
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="4">
+                                                    {% block list_empty %}
+                                                        {{ 'list.no_results'|trans }} <a href="{{ path(links.new) }}">Create your first.</a>
+                                                    {% endblock %}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="pagerfanta">
+                                    {{ pagerfanta(data, 'twitter_bootstrap3_translated') }}
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+
+
+            </section>
+        </div>
+    </div>
 {% endblock %}

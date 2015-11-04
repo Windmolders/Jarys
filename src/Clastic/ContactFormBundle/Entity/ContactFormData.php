@@ -242,5 +242,20 @@ class ContactFormData
     {
         return $this->social;
     }
+
+    /**
+     * Get states
+     *
+     * @return array
+     */
+    public function getStates()
+    {
+        return array(
+            '0' => 'New',
+            '1' => 'Being handled',
+            '3' => 'Finished',
+        );
+    }
+
 }
 

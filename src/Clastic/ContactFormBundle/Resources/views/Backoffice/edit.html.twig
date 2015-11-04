@@ -1,7 +1,6 @@
 {% extends 'ClasticBackofficeBundle::base.html.twig' %}
 
-{% block html_title %}Clastic - {{ page_title|default(module.name) }}{% endblock %}
-{% block page_title %}{{ page_title|default(module.name) }}{% endblock %}
+{% block html_title %}Jarys - {{ page_title|default(module.name) }}{% endblock %}
 
 {% block header_actions %}
 {% endblock %}
@@ -21,9 +20,13 @@
                     </div>
                 {% endfor %}
                 <header class="header"></header>
-                {{ form_start(form, {attr: {role: 'form'}}) }}
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
+                {{ form_start(edit_form, {attr: {role: 'form'}}) }}
+                {{ form_widget(edit_form) }}
+                {{ form_end(edit_form) }}
+
+                {{ form_start(delete_form, {attr: {role: 'form'}}) }}
+                {{ form_widget(delete_form) }}
+                {{ form_end(delete_form) }}
             </section>
         </div>
     </div>

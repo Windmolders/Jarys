@@ -28,6 +28,13 @@ class ContactFormTypeController extends Controller
     /**
      * @return string
      */
+    public function getEntityType() {
+        return 'contact_form_type';
+    }
+
+    /**
+     * @return string
+     */
     public function getEntityName() {
         return 'ClasticContactFormBundle:ContactFormType';
     }
@@ -36,7 +43,7 @@ class ContactFormTypeController extends Controller
      * @return string
      */
     public function getDisplayTitle() {
-        return 'Contact form data';
+        return 'Contact form';
     }
 
     /**
@@ -62,6 +69,7 @@ class ContactFormTypeController extends Controller
     public function getTemplateData() {
         return array(
             'type' => $this->getType(),
+            'entityType' => $this->getEntityType(),
             'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
             'submodules' => array(),
             'links' => $this->addBackofficeLinks(),
