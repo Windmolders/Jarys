@@ -3,8 +3,8 @@
 {% trans_default_domain 'clastic' %}
 
 {% block page_title -%}
-    Contact data
-    <a class="btn-add" href="{{ path('contact-form-data_new') }}"><i class="fa fa-plus"></i> Add</a>
+    {{ displayTitle }} - list
+    <a class="btn-add" href="{{ path(links.new) }}"><i class="fa fa-plus"></i> Add</a>
 {%- endblock %}
 
 
@@ -19,10 +19,11 @@
 {% block list_body %}
     <tr>
         <td>
-            <a class="btn btn-success btn-xs" title="Edit" href="{{ path('contact-form-data_edit', { 'id': record.id}) }}"><i class="fa fa-pencil"></i></a>
-            <a class="btn btn-danger btn-xs" title="Delete" href="{{ path('clastic_backoffice_contact_form_data_delete', { 'id': record.id}) }}"><i class="fa fa-trash"></i></a>
+            <a class="btn btn-info btn-xs" title="Show" href="{{ path(links.show, { 'id': record.id}) }}"><i class="fa fa-search"></i></a>
+            <a class="btn btn-success btn-xs" title="Edit" href="{{ path(links.edit, { 'id': record.id}) }}"><i class="fa fa-pencil"></i></a>
+            <a class="btn btn-danger btn-xs" title="Delete" href="{{ path(links.delete, { 'id': record.id}) }}"><i class="fa fa-trash"></i></a>
         </td>
-        <td>{{ record.title }}</td>
+        <td>{{ record.name }} - {{ record.title }}</td>
         <td></td>
     </tr>
 {% endblock %}

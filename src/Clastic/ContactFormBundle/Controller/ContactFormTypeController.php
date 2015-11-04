@@ -18,12 +18,55 @@ use Clastic\ContactFormBundle\Form\ContactFormTypeType;
 class ContactFormTypeController extends Controller
 {
 
+    /**
+     * @return string
+     */
     public function getType() {
         return 'contact_form';
     }
 
+    /**
+     * @return string
+     */
     public function getEntityName() {
         return 'ClasticContactFormBundle:ContactFormType';
+    }
+
+    /**
+     * @return string
+     */
+    public function getDisplayTitle() {
+        return 'Contact form data';
+    }
+
+    /**
+     * Returns de links for the backoffice template.
+     *
+     * @return array
+     */
+    public function addBackofficeLinks() {
+        return array (
+            'edit' => 'contact-form-type_edit',
+            'list' => 'contact-form-type',
+            'show' => 'contact-form-type_show',
+            'delete' => 'contact-form-type_delete',
+            'new' => 'contact-form-type_new'
+        );
+    }
+
+    /**
+     * Returns array with extra template data
+     *
+     * @return array
+     */
+    public function getTemplateData() {
+        return array(
+            'type' => $this->getType(),
+            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
+            'submodules' => array(),
+            'links' => $this->addBackofficeLinks(),
+            'displayTitle' => $this->getDisplayTitle(),
+        );
     }
 
     /**
@@ -53,12 +96,12 @@ class ContactFormTypeController extends Controller
         $data = new Pagerfanta($adapter);
         $data->setCurrentPage($request->query->get('page', 1));
 
-        return $this->render('ClasticContactFormBundle:Backoffice:index.html.twig', array(
-            'data' => $data,
-            'type' => $this->getType(),
-            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
-            'submodules' => array(),
-        ));
+        return $this->render('ClasticContactFormBundle:Backoffice:index.html.twig', array_merge(
+            array(
+                'data' => $data,
+            ),
+            $this->getTemplateData()
+            ));
     }
     /**
      * Creates a new ContactFormType entity.
@@ -78,13 +121,14 @@ class ContactFormTypeController extends Controller
             return $this->redirect($this->generateUrl('contact-form-type_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-            'type' => $this->getType(),
-            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
-            'submodules' => array(),
-        ));
+        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig',
+            array_merge(
+                array(
+                    'entity' => $entity,
+                    'form'   => $form->createView(),
+                ),
+                $this->getTemplateData()
+            ));
     }
 
     /**
@@ -115,13 +159,14 @@ class ContactFormTypeController extends Controller
         $entity = new ContactFormType();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-            'type' => $this->getType(),
-            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
-            'submodules' => array(),
-        ));
+        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig',
+            array_merge(
+                array(
+                    'entity' => $entity,
+                    'form'   => $form->createView(),
+                ),
+                $this->getTemplateData()
+            ));
     }
 
     /**
@@ -140,13 +185,14 @@ class ContactFormTypeController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ClasticContactFormBundle:Backoffice:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-            'type' => $this->getType(),
-            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
-            'submodules' => array(),
-        ));
+        return $this->render('ClasticContactFormBundle:Backoffice:show.html.twig',
+            array_merge(
+                array(
+                    'entity'      => $entity,
+                    'delete_form' => $deleteForm->createView(),
+                ),
+                $this->getTemplateData()
+            ));
     }
 
     /**
@@ -166,14 +212,15 @@ class ContactFormTypeController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-            'type' => $this->getType(),
-            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
-            'submodules' => array(),
-        ));
+        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig',
+            array_merge(
+                array(
+                    'entity'      => $entity,
+                    'edit_form'   => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
+                ),
+                $this->getTemplateData()
+            ));
     }
 
     /**
@@ -218,14 +265,15 @@ class ContactFormTypeController extends Controller
             return $this->redirect($this->generateUrl('contact-form-type_edit', array('id' => $id)));
         }
 
-        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-            'type' => $this->getType(),
-            'module' => $this->get('clastic.module_manager')->getModule($this->getType()),
-            'submodules' => array(),
-        ));
+        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig',
+            array_merge(
+                array(
+                    'entity'      => $entity,
+                    'edit_form'   => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
+                ),
+                $this->getTemplateData()
+            ));
     }
     /**
      * Deletes a ContactFormType entity.
