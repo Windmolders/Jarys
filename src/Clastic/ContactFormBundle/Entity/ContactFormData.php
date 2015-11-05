@@ -48,6 +48,27 @@ class ContactFormData
     private $state;
 
     /**
+     * @var string
+     */
+    private $tel;
+
+    /**
+     * @return string
+     */
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+    /**
+     * @param string $tel
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+    }
+
+    /**
      * @var array
      */
     private $social;

@@ -80,3 +80,8 @@ swiftmailer:
 clastic_google_analytics:
     client_id: UA-69726706-1
     profile_id: 2
+
+ewz_recaptcha:
+    public_key:  6LckZhATAAAAAP_cSuGQ2KTiPF0D_pw2ZJ-UUGYy
+    private_key: 6LckZhATAAAAADJd09eJS1mcUJ4xizc0Kw8ufutU
+    locale_key:  %kernel.default_locale%

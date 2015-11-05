@@ -29,6 +29,7 @@
   border: 1px solid lighten($body-bg, 5%);
   color: #ddd;
   padding: 20px;
+  margin-bottom: 10px;
   &:focus {
     outline: 0;
     border-color: lighten($jarys-blue, 5%);
@@ -36,11 +37,29 @@
   }
 }
 
-.form-group {
+.contact-form {
   label {
+    margin-bottom: 5px;
     color: $jarys-blue;
     font-family: $font-family-sans-serif;
     font-weight: 300;
     text-transform: uppercase;
   }
+  button {
+    margin-top: 10px;
+  }
 }
+
+.alert-container {
+  padding-top: 20px;
+  .alert {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+  }
+}
+
+.text-danger {
+  padding: 20px;
+}
+

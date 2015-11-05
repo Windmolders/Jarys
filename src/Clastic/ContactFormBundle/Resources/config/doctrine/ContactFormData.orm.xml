@@ -5,11 +5,12 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" column="name" length="255"/>
-    <field name="companyName" type="string" column="companyName" length="255"/>
+    <field name="companyName" type="string" column="companyName" length="255" nullable="true"/>
     <field name="mail" type="string" column="mail" length="255"/>
     <field name="state" type="string" column="state" length="255"/>
     <field name="title" type="string" column="title" length="255" nullable="true"/>
     <field name="message" type="string" column="message" length="255"/>
+    <field name="tel" type="string" column="tel" length="255" nullable="true"/>
 
     <field name="social" type="json_array" column="social" nullable="true"/>
 

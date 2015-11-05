@@ -8,6 +8,7 @@
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
   box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
   border-top: 5px solid #3498db;
+  transition: all 200ms ease;
   .dashboard-icon {
     display: block;
     color: #666;
@@ -15,11 +16,29 @@
   .dashboard-title {
     display: block;
   }
+  .table {
+    th {
+      padding-left: 20px;
+    }
+    td {
+      padding-right: 20px;
+    }
+  }
+}
+
+.card-title {
+  text-transform: uppercase;
+  color: #1e3042;
+  font-size: 20px;
+  padding-bottom: 10px;
 }
 
 a:hover .dashboard-card {
   background: rgba(52, 152, 219, 0.43);
   text-decoration: none;
+  transition: all 200ms ease;
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+  box-shadow: 0 2px 5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
 }
 
 .jarys-Blog:before {
@@ -49,21 +68,3 @@ a:hover .dashboard-card {
 .jarys-Media:before {
   content: @fa-var-picture-o;
 }
-
-//<div class="row">
-//                {% for module in moduleManager.getContentModules %}
-//<div class="col-md-3 col-sm-6">
-//<a href="{{ path('clastic_node_list', {type: module.identifier}) }}">
-//<div class="dashboard-card">
-//<span class="dashboard-icon">
-//
-//<span class="fa fa-3x {% if attribute(module, 'getIcon') is defined %}fa-{{ module.icon }}{% else %}infi-{{ module.name }}{% endif %}"></span>
-//</span>
-//<span class="dashboard-title">
-//                             {{ module.name }}
-//</span>
-//</div>
-//</a>
-//</div>
-//  {% endfor %}
-//</div>

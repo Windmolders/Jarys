@@ -10,9 +10,11 @@
                     <div class="col-md-6">
                         <h3>Jarys DP</h3>
                         <ul class="contact-list">
-                            <li>Guido Gezellestraat 5
+                            <li>
+                                Guido Gezellestraat 5
                             </li>
-                            <li>2630 Aartselaar
+                            <li>
+                                2630 Aartselaar
                             </li>
                             <li>
                                 <i class="fa fa-phone"></i> +32 (0)3 870 63 93
@@ -21,27 +23,22 @@
                                 <a href="mailto:printing@jarys.be"><i class="fa fa-envelope-o"></i> printing@jarys.be</a>
                             </li>
                         </ul>
+                        {% if message|length > 0 %}
+                        <div class="alert-container">
+                            <div class="alert alert-info">
+                                {{ message }}
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
                     <div class="col-md-6">
-                        <h3>Contacteer ons</h3>
-                        <form action="/post-contact" method="post">
-                            <div class="form-group">
-                                <label for="InputName">Naam</label>
-                                <input type="text" class="form-control" id="InputName">
-                            </div>
-                            <div class="form-group">
-                                <label for="InputEmail">E-mail</label>
-                                <input type="email" class="form-control" id="InputEmail">
-                            </div>
-                            <div class="form-group">
-                                <label for="InputMessage">Bericht</label>
-                                <textarea class="form-control" rows="3" id="InputMessage"></textarea>
-                            </div>
-                            <div class="form-group">
-                            <button class="btn-jarys" type="submit">Verzenden</button>
-                            </div>
-                        </form>
+                        <div class="contact-form">
+                            <h3>Contacteer ons</h3>
+                            {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                            {{ form_end(form) }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,10 +47,39 @@
     <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script>
         function initialize() {
+            var styles = [
+                {
+                    "stylers": [
+                        { "hue": "#00ccff" },
+                        { "saturation": 51 },
+                        { "lightness": -15 },
+                        { "gamma": 0.97 }
+                    ]
+                },{
+                    "featureType": "landscape",
+                    "stylers": [
+                        { "saturation": -59 }
+                    ]
+                },{
+                    "featureType": "road.arterial",
+                    "stylers": [
+                        { "hue": "#00bbff" },
+                        { "saturation": 48 },
+                        { "lightness": -18 }
+                    ]
+                },{
+                    "featureType": "road.highway",
+                    "stylers": [
+                        { "lightness": -35 }
+                    ]
+                },{
+                }
+            ];
             var mapProp = {
                 center:new google.maps.LatLng(51.134526,4.386233),
                 zoom: 16,
-                mapTypeId:google.maps.MapTypeId.ROADMAP
+                mapTypeId:google.maps.MapTypeId.ROADMAP,
+                styles: styles
             };
             var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 

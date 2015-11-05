@@ -31,7 +31,8 @@
                                         {% block list_header %}
                                             <tr>
                                                 <th></th>
-                                                <th>{{ 'Name'|trans }}</th>
+                                                <th>{{ 'Id'|trans }}</th>
+                                                <th>{{ 'Title'|trans }}</th>
                                                 <th>{{ 'list.status'|trans }}</th>
                                             </tr>
                                         {% endblock %}
@@ -40,12 +41,13 @@
                                         {% for record in data %}
                                             {% block list_body %}
                                                 <tr>
-                                                    <td>
+                                                    <td class="button-td">
                                                         <a class="btn btn-info btn-xs" title="Show" href="{{ path(links.show, { 'id': record.id}) }}"><i class="fa fa-search"></i></a>
                                                         <a class="btn btn-success btn-xs" title="Edit" href="{{ path(links.edit, { 'id': record.id}) }}"><i class="fa fa-pencil"></i></a>
                                                         <a class="btn btn-danger btn-xs" title="Delete" href="{{ path(links.delete, { 'id': record.id}) }}"><i class="fa fa-trash"></i></a>
                                                     </td>
-                                                    <td>{{ record.name }}</td>
+                                                    <td>{{ record.id }}</td>
+                                                    <td>{% if record.title is defined %}{{ record.title }}{% else %}{{ record.name }}{% endif %}</td>
                                                     <td>{% if record.state is defined %}
                                                             {{ record.getStates()[record.state] }}
                                                         {% endif %}</td>

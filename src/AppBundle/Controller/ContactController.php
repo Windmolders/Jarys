@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\ContactData;
+use Clastic\ContactFormBundle\Entity\ContactFormData;
+use Clastic\ContactFormBundle\Form\ContactFormFrontType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Clastic\BlockBundle;
@@ -13,48 +15,35 @@ class ContactController extends Controller
     /**
      * @Route("/contact", name="contact")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render('AppBundle:Contact:index.html.twig', array(
-            'record' => array(
-                'icon' => 'fa-envelope-o',
-                'class' => 'blauw',
-                'displayTitle' => 'Contact',
-            ),
+        $post = new ContactFormData();
+        $form = $this->createForm(new ContactFormFrontType(), $post);
+        $form->add('submit', 'submit', array(
+            'label' => 'Verzend',
+            'attr'  => array('class' => 'btn-jarys')
         ));
-    }
 
-    /**
-     * @Route("/post-contact", name="post-contact")
-     */
-    public function postMessage()
-    {
-        $request = Request::createFromGlobals();
+        $form->handleRequest($request);
 
-        $name = $request->query->get('InputName');
-        $email = $request->query->get('InputEmail');
-        $message = $request->query->get('InputMessage');
+        $message = '';
 
-        $contact = new ContactData();
-        $contact->setName($name);
-        $contact->setEmail($email);
-        $contact->setContent($message);
-        $contact->
-
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($contact);
-        $em->flush();
-
-        // TODO: fix node & mailing
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post->setState(0);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+            $message = 'Uw bericht is succesvol ontvangen. Wij contacteren u zo snel mogelijk.';
+        }
 
         return $this->render('AppBundle:Contact:index.html.twig', array(
             'record' => array(
                 'icon' => 'fa-envelope-o',
                 'class' => 'blauw',
                 'displayTitle' => 'Contact',
-                'success' => true,
-                'message' => 'Uw bericht is verstuurd en wij zullen zo snel mogelijk contact met u openemen.'
             ),
+            'form' => $form->createView(),
+            'message' => $message,
         ));
     }
 }

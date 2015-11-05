@@ -38,6 +38,7 @@ class AppKernel extends Kernel
             new Clastic\FrontBundle\ClasticFrontBundle(),
             new Clastic\SecurityBundle\ClasticSecurityBundle(),
             new Clastic\GoogleAnalyticsBundle\ClasticGoogleAnalyticsBundle(),
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
 
             // Your project
             new AppBundle\AppBundle(),

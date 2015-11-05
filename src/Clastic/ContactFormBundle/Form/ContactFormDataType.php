@@ -55,13 +55,17 @@ class ContactFormDataType extends AbstractType
                 'label' => 'Name',
                 'required' => false,
             ))
-            ->add('mail', 'text', array(
+            ->add('mail', 'email', array(
                 'label' => 'E-Mail',
                 'required' => true,
             ))
+            ->add('tel', 'text', array(
+                'label' => 'Tel',
+                'required' => false,
+            ))
             ->add('title', 'text', array(
                 'label' => 'Subject',
-                'required' => false,
+                'required' => true,
             ))
             ->add('state', 'choice', array(
                 'label' => 'State',
