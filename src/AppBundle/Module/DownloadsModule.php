@@ -20,6 +20,16 @@ class DownloadsModule implements NodeModuleInterface
     }
 
     /**
+     * The icon of the module.
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        return 'download';
+    }
+
+    /**
      * The name of the module.
      *
      * @return string

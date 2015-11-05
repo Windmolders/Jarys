@@ -27,6 +27,16 @@ class ContactFormModule implements ModuleInterface
     }
 
     /**
+     * The icon of the module.
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        return 'comments-o';
+    }
+
+    /**
      * Check if it's a normal or node module
      *
      * @return string

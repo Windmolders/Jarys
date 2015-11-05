@@ -15,8 +15,9 @@
             <tag name="clastic.module" node_module="false" alias="contact-form" />
         </service>
 
-        <service id="clastic.contact_form.twig_extension.contact_form" class="%clastic.contact_form.twig_extension.contact_form.class%" public="false">
+        <service id="clastic.contact_form.twig_extension.contact_form" class="%clastic.contact_form.twig_extension.contact_form.class%">
             <tag name="twig.extension" />
+            <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
 
     </services>

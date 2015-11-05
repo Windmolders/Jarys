@@ -1,0 +1,61 @@
+{% extends 'ClasticBackofficeBundle::base.html.twig' %}
+
+{% trans_default_domain 'clastic' %}
+
+{% block page_title -%}
+    {{ 'dashboard.title'|trans }}
+
+    <div class="btn-group">
+        <button type="button" class="btn dropdown-toggle btn-add" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+{%- endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                {% for module in moduleManager.getContentModules %}
+                    <div class="col-md-3 col-sm-6">
+                        <a href="{{ path('clastic_node_list', {type: module.identifier}) }}">
+                            <div class="dashboard-card">
+                    <span class="dashboard-icon">
+
+                        <span class="fa fa-3x {% if attribute(module, 'getIcon') is defined %}fa-{{ module.icon }}{% else %}jarys-{{ module.name }}{% endif %}"></span>
+                    </span>
+                    <span class="dashboard-title">
+                        {{ module.name }}
+                    </span>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                {{ clastic_contact_form_dashboard() }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% include 'ClasticBackofficeBundle:FlashMessage:render.html.twig' %}
+            <div role="tabpanel" class="tabpanel">
+                <ul class="nav nav-tabs" role="tablist">
+                    {% for id, tab in mainTabs %}
+                        <li role="presentation" {% if loop.first %} class="active"{% endif %}><a href="#{{ id }}" aria-controls="recent" role="tab" data-toggle="tab">{{ tab.title|trans }}</a></li>
+                    {% endfor %}
+                </ul>
+                <div class="tab-content">
+                    {% for id, tab in mainTabs %}
+                        <div role="tabpanel" class="tab-pane {% if loop.first %} active{% endif %}" id="{{ id }}">
+                            {{ tab.content|raw }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

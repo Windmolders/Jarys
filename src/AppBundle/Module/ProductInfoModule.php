@@ -20,6 +20,16 @@ class ProductInfoModule implements NodeModuleInterface
     }
 
     /**
+     * The icon of the module.
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        return 'info';
+    }
+
+    /**
      * The name of the module.
      *
      * @return string
