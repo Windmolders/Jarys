@@ -48,32 +48,7 @@
     <script>
         function initialize() {
             var styles = [
-                {
-                    "stylers": [
-                        { "hue": "#00ccff" },
-                        { "saturation": 51 },
-                        { "lightness": -15 },
-                        { "gamma": 0.97 }
-                    ]
-                },{
-                    "featureType": "landscape",
-                    "stylers": [
-                        { "saturation": -59 }
-                    ]
-                },{
-                    "featureType": "road.arterial",
-                    "stylers": [
-                        { "hue": "#00bbff" },
-                        { "saturation": 48 },
-                        { "lightness": -18 }
-                    ]
-                },{
-                    "featureType": "road.highway",
-                    "stylers": [
-                        { "lightness": -35 }
-                    ]
-                },{
-                }
+                {{ mapColors|raw }}
             ];
             var mapProp = {
                 center:new google.maps.LatLng(51.134526,4.386233),

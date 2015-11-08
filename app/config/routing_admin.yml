@@ -1,3 +1,9 @@
+clastic_contact_form:
+    resource: "@ClasticContactFormBundle/Resources/config/backoffice_routing.xml"
+
+clastic_sitesettings:
+    resource: "@AppBundle/Resources/config/backoffice_routing.xml"
+
 clastic_alias:
     resource: "@ClasticAliasBundle/Resources/config/backoffice_routing.xml"
 
@@ -16,5 +22,3 @@ clastic_block:
 clastic_backoffice:
     resource: "@ClasticBackofficeBundle/Resources/config/routing.xml"
 
-clastic_contact_form:
-    resource: "@ClasticContactFormBundle/Resources/config/backoffice_routing.xml"

@@ -165,7 +165,7 @@ class ContactFormDataController extends Controller
         $entity = new ContactFormData();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('ClasticContactFormBundle:Backoffice:new.html.twig',
+        return $this->render('ClasticContactFormBundle:Backoffice:Data/new.html.twig',
             array_merge(
                 array(
                     'entity' => $entity,
@@ -256,6 +256,7 @@ class ContactFormDataController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        /** @var ContactFormData $entity */
         $entity = $em->getRepository('ClasticContactFormBundle:ContactFormData')->find($id);
 
         if (!$entity) {
@@ -267,6 +268,8 @@ class ContactFormDataController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            var_dump($entity);die;
+            $entity->setSocial(null);
             $em->flush();
 
             return $this->redirect($this->generateUrl('contact-form-data_edit', array('id' => $id)));

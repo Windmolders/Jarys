@@ -5,33 +5,52 @@
     margin: 0 0 20px 0;
   }
   &.groen {
-    h1,h2,h3,h4,h5,h6 {
+    h1,h2,h3,h4,h5,h6,li:before {
       color: $jarys-green;
     }
   }
   &.blauw {
-    h1,h2,h3,h4,h5,h6 {
+    h1,h2,h3,h4,h5,h6,li:before {
       color: $jarys-blue;
     }
   }
   &.geel {
-    h1,h2,h3,h4,h5,h6 {
+    h1,h2,h3,h4,h5,h6,li:before {
       color: $jarys-yellow;
     }
   }
   &.rood {
-    h1,h2,h3,h4,h5,h6 {
+    h1,h2,h3,h4,h5,h6,li:before {
       color: $jarys-red;
     }
   }
   &.oranje {
-    h1,h2,h3,h4,h5,h6 {
+    h1,h2,h3,h4,h5,h6,li:before {
       color: $jarys-orange;
     }
   }
   &.roos {
-    h1,h2,h3,h4,h5,h6 {
+    h1,h2,h3,h4,h5,h6,li:before {
       color: $jarys-pink;
+    }
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      position: relative;
+      margin: 2px 0;
+      color: lighten(#595d65, 10%);
+      font-size: 24px;
+      font-weight: 300;
+      font-family: $font-family-sans-serif;
+      &:before {
+        font-family: 'fontawesome';
+        content: $fa-var-angle-right;
+        font-size: 16px;
+        margin-right: 10px;
+      }
     }
   }
 }

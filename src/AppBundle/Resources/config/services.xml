@@ -11,7 +11,7 @@
         <parameter key="app_bundle.menu.twig_extension.jarys_menu.class">AppBundle\Twig\JarysMenuExtension</parameter>
         <parameter key="app_bundle.downloads.module.class">AppBundle\Module\DownloadsModule</parameter>
         <parameter key="app_bundle.downloads.module.form_extension.class">AppBundle\Form\Module\DownloadsFormExtension</parameter>
-    </parameters>
+    <parameter key="app_bundle.site_setting.module.class">AppBundle\Module\SiteSettingModule</parameter><parameter key="app_bundle.site_setting.module.form_extension.class">AppBundle\Form\Module\SiteSettingFormExtension</parameter></parameters>
 
     <services>
         <service id="app_bundle.menu.twig_extension.jarys_menu" class="%app_bundle.menu.twig_extension.jarys_menu.class%" public="false">
@@ -33,5 +33,5 @@
             <tag name="clastic.node_form" build_service="app_bundle.downloads.module.form_extension"/>
         </service>
         <service id="app_bundle.downloads.module.form_extension" class="%app_bundle.downloads.module.form_extension.class%"/>
-    </services>
+    <service id="app_bundle.site_setting.module" class="%app_bundle.site_setting.module.class%"><tag name="clastic.module" node_module="true" alias="site_setting"/><tag name="clastic.node_form" build_service="app_bundle.site_setting.module.form_extension"/></service><service id="app_bundle.site_setting.module.form_extension" class="%app_bundle.site_setting.module.form_extension.class%"/></services>
     </container>

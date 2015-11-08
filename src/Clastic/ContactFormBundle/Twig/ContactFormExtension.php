@@ -104,8 +104,9 @@ class ContactFormExtension extends \Twig_Extension
         }
 
         /** @var ContactFormData $firstItem */
-        $firstItem = $items[0];
+        $firstItem = new ContactFormData();
         $stateTypes = $firstItem->getStates();
+
         $states = array();
 
         foreach($stateTypes as $value) {
@@ -114,8 +115,8 @@ class ContactFormExtension extends \Twig_Extension
 
         foreach($items as $value) {
             /** ContactFormData $value */
-           // $value = intval($value->getState());
-           // $states[$value]['count'] += 1;
+            $index = intval($value->getState());
+            $states[$index]["count"] += 1;
         }
 
         return $this->environment->render($template, array(

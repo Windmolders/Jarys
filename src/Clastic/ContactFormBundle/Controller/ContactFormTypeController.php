@@ -43,7 +43,7 @@ class ContactFormTypeController extends Controller
      * @return string
      */
     public function getDisplayTitle() {
-        return 'Contact form';
+        return 'Contact form type';
     }
 
     /**
@@ -167,7 +167,7 @@ class ContactFormTypeController extends Controller
         $entity = new ContactFormType();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('ClasticContactFormBundle:Backoffice:edit.html.twig',
+        return $this->render('ClasticContactFormBundle:Backoffice:Type/new.html.twig',
             array_merge(
                 array(
                     'entity' => $entity,
@@ -193,7 +193,7 @@ class ContactFormTypeController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ClasticContactFormBundle:Backoffice:show.html.twig',
+        return $this->render('ClasticContactFormBundle:Backoffice:Type/show.html.twig',
             array_merge(
                 array(
                     'entity'      => $entity,

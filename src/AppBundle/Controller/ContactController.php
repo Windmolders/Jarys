@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\ContactData;
 use Clastic\ContactFormBundle\Entity\ContactFormData;
 use Clastic\ContactFormBundle\Form\ContactFormFrontType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -17,6 +16,11 @@ class ContactController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $sitesettings = $this->getDoctrine()->getRepository('AppBundle:SiteSetting');
+
+        /** @var SiteSetting $value */
+        $setting = $sitesettings->findOneBy(array('name' => 'mapColors'));
+
         $post = new ContactFormData();
         $form = $this->createForm(new ContactFormFrontType(), $post);
         $form->add('submit', 'submit', array(
@@ -44,6 +48,7 @@ class ContactController extends Controller
             ),
             'form' => $form->createView(),
             'message' => $message,
+            'mapColors' => is_null($setting)? '{}' : $setting->getValue(),
         ));
     }
 }

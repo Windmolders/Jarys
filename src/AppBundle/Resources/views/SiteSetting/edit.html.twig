@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block page_title -%}
-    {{ displayTitle }}
+    Instellingen
 {%- endblock %}
 
 {% block content %}
@@ -19,13 +19,9 @@
                     </div>
                 {% endfor %}
                 <header class="header"></header>
-                {{ form_start(edit_form, {attr: {role: 'form'}}) }}
-                {{ form_widget(edit_form) }}
-                {{ form_end(edit_form) }}
-
-                {{ form_start(delete_form, {attr: {role: 'form'}}) }}
-                {{ form_widget(delete_form) }}
-                {{ form_end(delete_form) }}
+                {{ form_start(form, {attr: {role: 'form'}}) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
             </section>
         </div>
     </div>

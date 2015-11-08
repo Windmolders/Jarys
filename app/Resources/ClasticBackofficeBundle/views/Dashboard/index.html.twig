@@ -13,15 +13,19 @@
             <div class="row">
                 {% for module in moduleManager.getContentModules %}
                     <div class="col-md-3 col-sm-6">
-                        <a href="{{ path('clastic_node_list', {type: module.identifier}) }}">
+                        {% if module.isNormalModule() is defined and module.isNormalModule() %}
+                            <a href="{{ path(module.getDefaultPath()) }}">
+                        {% else %}
+                            <a href="{{ path('clastic_node_list', {type: module.identifier}) }}">
+                        {% endif %}
                             <div class="dashboard-card">
-                    <span class="dashboard-icon">
+                                <span class="dashboard-icon">
 
-                        <span class="fa fa-3x {% if attribute(module, 'getIcon') is defined %}fa-{{ module.icon }}{% else %}jarys-{{ module.name }}{% endif %}"></span>
-                    </span>
-                    <span class="dashboard-title">
-                        {{ module.name }}
-                    </span>
+                                    <span class="fa fa-3x {% if attribute(module, 'getIcon') is defined %}fa-{{ module.icon }}{% else %}jarys-{{ module.name }}{% endif %}"></span>
+                                </span>
+                                <span class="dashboard-title">
+                                    {{ module.name }}
+                                </span>
                             </div>
                         </a>
                     </div>
