@@ -9,11 +9,9 @@
         <li>
             <ul>
                 {% for module in modules %}
-                    {% if module.isNormalModule() is defined and module.isNormalModule() %}
-                        <li><a href="{{ path(module.getDefaultPath()) }}">{{ module.name }}</a></li>
-                    {% else %}
+
                         <li><a href="{{ path('clastic_node_list', {type: module.identifier}) }}">{{ module.name }}</a></li>
-                    {% endif %}
+
                 {% endfor %}
             </ul>
         </li>

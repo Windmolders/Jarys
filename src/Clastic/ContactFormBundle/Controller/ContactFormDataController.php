@@ -2,9 +2,11 @@
 
 namespace Clastic\ContactFormBundle\Controller;
 
+use Clastic\BackofficeBundle\Controller\AbstractModuleController;
 use Doctrine\ORM\QueryBuilder;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Clastic\ContactFormBundle\Entity\ContactFormData;
@@ -14,7 +16,7 @@ use Clastic\ContactFormBundle\Form\ContactFormDataType;
  * ContactFormData controller.
  *
  */
-class ContactFormDataController extends Controller
+class ContactFormDataController extends AbstractModuleController
 {
     /**
      * @return string
@@ -91,6 +93,8 @@ class ContactFormDataController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $this->buildBreadcrumbs($this->getType());
+
         $queryBuilder = $this->getDoctrine()
             ->getManager()
             ->createQueryBuilder()
@@ -116,6 +120,8 @@ class ContactFormDataController extends Controller
      */
     public function createAction(Request $request)
     {
+        $this->buildBreadcrumbs($this->getType());
+
         $entity = new ContactFormData();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -162,6 +168,8 @@ class ContactFormDataController extends Controller
      */
     public function newAction()
     {
+        $this->buildBreadcrumbs($this->getType());
+
         $entity = new ContactFormData();
         $form   = $this->createCreateForm($entity);
 
@@ -181,6 +189,8 @@ class ContactFormDataController extends Controller
      */
     public function showAction($id)
     {
+        $this->buildBreadcrumbs($this->getType());
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ClasticContactFormBundle:ContactFormData')->find($id);
@@ -208,6 +218,8 @@ class ContactFormDataController extends Controller
      */
     public function editAction($id)
     {
+        $this->buildBreadcrumbs($this->getType());
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ClasticContactFormBundle:ContactFormData')->find($id);
@@ -254,6 +266,8 @@ class ContactFormDataController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
+        $this->buildBreadcrumbs($this->getType());
+
         $em = $this->getDoctrine()->getManager();
 
         /** @var ContactFormData $entity */
@@ -268,8 +282,8 @@ class ContactFormDataController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            var_dump($entity);die;
-            $entity->setSocial(null);
+
+            $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('contact-form-data_edit', array('id' => $id)));
@@ -290,7 +304,7 @@ class ContactFormDataController extends Controller
      * Deletes a ContactFormData entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($id, Request $request)
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
@@ -325,5 +339,25 @@ class ContactFormDataController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    protected function resolveData($id)
+    {
+        return;
+    }
+
+    protected function getListTemplate()
+    {
+        return;
+    }
+
+    protected function buildForm($data)
+    {
+        return;
+    }
+
+    protected function resolveDataTitle($data)
+    {
+        return;
     }
 }

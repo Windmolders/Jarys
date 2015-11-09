@@ -14,6 +14,13 @@
 
     <field name="social" type="json_array" column="social" nullable="true"/>
 
-    <one-to-many field="type" target-entity="Clastic\ContactFormBundle\Entity\ContactFormType" mapped-by="product" />
+    <many-to-one
+            field="type"
+            target-entity="Clastic\ContactFormBundle\Entity\ContactFormType"
+            inversed-by="contactFormDatas"
+            >
+      <join-column name="contact_form_type_id" referenced-column-name="id" />
+    </many-to-one>
+
   </entity>
 </doctrine-mapping>

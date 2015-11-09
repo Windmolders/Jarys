@@ -116,7 +116,9 @@ class ContactFormExtension extends \Twig_Extension
         foreach($items as $value) {
             /** ContactFormData $value */
             $index = intval($value->getState());
-            $states[$index]["count"] += 1;
+            if (isset($states[$index])) {
+                $states[$index]["count"] += 1;
+            }
         }
 
         return $this->environment->render($template, array(
