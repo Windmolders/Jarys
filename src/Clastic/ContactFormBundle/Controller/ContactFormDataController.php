@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Clastic\ContactFormBundle\Entity\ContactFormData;
 use Clastic\ContactFormBundle\Form\ContactFormDataType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * ContactFormData controller.

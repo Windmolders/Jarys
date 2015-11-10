@@ -1,5 +1,7 @@
 {% extends 'ClasticBackofficeBundle::base.html.twig' %}
 
+{% form_theme form 'ClasticBackofficeBundle:Form:fields.html.twig' %}
+
 {% block html_title %}Jarys - {{ page_title|default(module.name) }}{% endblock %}
 
 {% block header_actions %}
@@ -8,6 +10,41 @@
 {% block page_title -%}
     Instellingen
 {%- endblock %}
+
+{% block tabs_widget -%}
+    <div role="tabpanel" class="tabpanel tabs-left">
+        <ul class="nav nav-tabs" role="tablist">
+            {% for child in form if child.vars.tab_type == 'tabs_tab' -%}
+                <li role="presentation"{% if loop.first %} class="active"{% endif %}>
+                    <a href="#{{ child.vars.id }}" aria-controls="{{ child.vars.id }}" role="tab" data-toggle="tab">
+                        {{ child.vars.label|trans({}, child.vars.translation_domain) }}
+                    </a>
+                </li>
+            {%- endfor %}
+        </ul>
+        <div class="tab-content">
+            {% for child in form if child.vars.tab_type == 'tabs_tab' -%}
+                <div role="tabpanel" class="tab-pane{% if loop.first %} active{% endif %}" id="{{ child.vars.id }}">
+                    {{- form_widget(child) -}}
+                </div>
+            {%- endfor %}
+        </div>
+        {% for child in form if child.vars.tab_type == 'tabs_tab_actions' -%}
+            <div class="form-actions">
+                {{- form_widget(child) -}}
+            </div>
+        {%- endfor %}
+    </div>
+{%- endblock %}
+
+{% block tab_widget -%}
+    {% for child in form -%}
+        {% if not child.rendered %}
+            {{- form_row(child) -}}
+        {% endif %}
+    {%- endfor %}
+{%- endblock %}
+
 
 {% block content %}
     <div class="row">

@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\SiteSetting;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Clastic\BlockBundle;
+use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class SiteSettingController extends Controller
 {
@@ -72,12 +74,38 @@ class SiteSettingController extends Controller
     }
 
     /**
+     * @param FormBuilderInterface $builder
+     * @param string               $name
+     * @param array                $options
+     *
+     * @return FormBuilderInterface
+     */
+    private function createTab(FormBuilderInterface $builder, $name, $options = array())
+    {
+        $options = array_replace(
+            $options,
+            array(
+                'inherit_data' => true,
+            ));
+
+        return $builder->create($name, 'tabs_tab', $options);
+    }
+
+    /**
      * @return \Symfony\Component\Form\Form
      */
     public function createSettingForm() {
 
         $defaultData = array();
+
+        /** @var FormBuilder $form */
         $form = $this->createFormBuilder($defaultData);
+
+        $this->createTab($form, 'Map')
+            ->add('mapColors', 'textarea', array(
+                'label' => 'Map kleuren -> https://snazzymaps.com/editor',
+                'required' => false,
+            ));
 
 
         $form->add('mapColors', 'textarea', array(
