@@ -22,14 +22,14 @@ class ContactFormDataController extends AbstractModuleController
      * @return string
      */
     public function getType() {
-        return 'contact_form';
+        return 'contact-form-data';
     }
 
     /**
      * @return string
      */
     public function getEntityType() {
-        return 'contact_form_data';
+        return 'contact-form-data';
     }
 
     /**

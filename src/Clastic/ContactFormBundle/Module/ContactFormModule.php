@@ -55,12 +55,12 @@ class ContactFormModule implements ModuleInterface
     {
         return array(
             '1' => array (
-                'type' => 'contact_form_data',
+                'type' => 'contact-form-data',
                 'title' => 'Data',
                 'url' =>  'contact-form-data',
             ),
             '2' => array (
-                'type' => 'contact_form_type',
+                'type' => 'contact-form-type',
                 'title' => 'Categories',
                 'url' =>  'contact-form-type',
             )
@@ -84,6 +84,6 @@ class ContactFormModule implements ModuleInterface
      */
     public function getIdentifier()
     {
-        return 'contact_form';
+        return 'contact-form-data';
     }
 }

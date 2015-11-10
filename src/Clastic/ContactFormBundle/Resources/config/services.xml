@@ -12,7 +12,7 @@
 
     <services>
         <service id="clastic.contact_form.module" class="%clastic.contact_form.module.class%">
-            <tag name="clastic.module" node_module="false" alias="contact-form" />
+            <tag name="clastic.module" node_module="false" alias="contact-form-data" />
         </service>
 
         <service id="clastic.contact_form.twig_extension.contact_form" class="%clastic.contact_form.twig_extension.contact_form.class%">

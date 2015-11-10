@@ -22,14 +22,14 @@ class ContactFormTypeController extends Controller
      * @return string
      */
     public function getType() {
-        return 'contact_form';
+        return 'contact-form-data';
     }
 
     /**
      * @return string
      */
     public function getEntityType() {
-        return 'contact_form_type';
+        return 'contact-form-type';
     }
 
     /**

@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="contact-form-data" path="/contact-form/list">
+    <route id="contact-form-data" path="/contact-form-data/list">
         <default key="_controller">ClasticContactFormBundle:ContactFormData:index</default>
         <default key="default">true</default>
         <default key="name">true</default>
