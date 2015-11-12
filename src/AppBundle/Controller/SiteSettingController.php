@@ -3,19 +3,22 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\SiteSetting;
+use AppBundle\Entity\SiteSettingRepository;
+use AppBundle\Form\Type\SiteSettingFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Clastic\BlockBundle;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\FormBuilderInterface;
 
 class SiteSettingController extends Controller
 {
 
     public function indexAction(Request $request)
     {
+        /** @var SiteSettingRepository $sitesettings */
+        $sitesettings = $this->getDoctrine()->getRepository('AppBundle:SiteSetting');
+
         /** @var \Symfony\Component\Form\Form $form */
-        $form = $this->createSettingForm();
+        $form = $this->createForm(new SiteSettingFormType($sitesettings));
 
         $form->handleRequest($request);
 
@@ -41,19 +44,6 @@ class SiteSettingController extends Controller
         ));
     }
 
-    public function getSetting($name, $default = '') {
-        $sitesettings = $this->getDoctrine()->getRepository('AppBundle:SiteSetting');
-
-        /** @var SiteSetting $value */
-        $setting = $sitesettings->findOneBy(array('name' => $name));
-
-        if (is_null($setting)) {
-            return $default;
-        }
-
-        return $setting->getValue();
-    }
-
     public function setSetting($name, $value) {
         $em = $this->getDoctrine()->getManager();
         $sitesettings = $this->getDoctrine()->getRepository('AppBundle:SiteSetting');
@@ -71,57 +61,6 @@ class SiteSettingController extends Controller
 
         $em->persist($setting);
         $em->flush();
-    }
-
-    /**
-     * @param FormBuilderInterface $builder
-     * @param string               $name
-     * @param array                $options
-     *
-     * @return FormBuilderInterface
-     */
-    private function createTab(FormBuilderInterface $builder, $name, $options = array())
-    {
-        $options = array_replace(
-            $options,
-            array(
-                'inherit_data' => true,
-            ));
-
-        return $builder->create($name, 'tabs_tab', $options);
-    }
-
-    /**
-     * @return \Symfony\Component\Form\Form
-     */
-    public function createSettingForm() {
-
-        $defaultData = array();
-
-        /** @var FormBuilder $form */
-        $form = $this->createFormBuilder($defaultData);
-
-        $this->createTab($form, 'Map')
-            ->add('mapColors', 'textarea', array(
-                'label' => 'Map kleuren -> https://snazzymaps.com/editor',
-                'required' => false,
-            ));
-
-
-        $form->add('mapColors', 'textarea', array(
-            'label' => 'Map kleuren -> https://snazzymaps.com/editor',
-            'required' => false,
-        ));
-        $form->get('mapColors')->setData($this->getSetting('mapColors'))
-        ;
-
-        $form->add('submit', 'submit', array(
-            'label' => 'Opslaan',
-            'attr'  => array('class' => 'btn-jarys')
-        ));
-
-        return $form->getForm();;
-
     }
 
     /**
